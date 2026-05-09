@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: ym-user
+  cloud:
+    nacos:
+      server-addr: 192.168.150.101:8848
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-redis.yaml
+            refresh: false
+          - data-id: shared-jwt.yaml
+            refresh: false
+          - data-id: shared-logs.yaml
+            refresh: false
+          - data-id: ym-user.yaml
+            refresh: false

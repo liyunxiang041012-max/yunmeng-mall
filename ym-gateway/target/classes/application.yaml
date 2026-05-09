@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    nacos:
+      discovery:
+        group: DEFAULT_GROUP
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: ym-user
+          uri: lb://ym-user
+          predicates:
+            - Path=/us/**
+          filters:
+            - PreserveHostHeader
+      default-filters:
+        - StripPrefix=1
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "*"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 360000
