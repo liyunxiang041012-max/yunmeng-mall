@@ -1,5 +1,6 @@
 package com.liyun.user.service;
 
+import com.liyun.user.domain.dto.AddressDTO;
 import com.liyun.user.domain.pojo.UserAddress;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserAddressService extends IService<UserAddress> {
 
+    void add(AddressDTO addressDTO);
 }

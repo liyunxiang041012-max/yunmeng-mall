@@ -19,6 +19,12 @@ spring:
             - Path=/us/**
           filters:
             - PreserveHostHeader
+        - id: ym-item
+          uri: lb://ym-item
+          predicates:
+            - Path=/it/**
+          filters:
+            - PreserveHostHeader
       default-filters:
         - StripPrefix=1
       globalcors:

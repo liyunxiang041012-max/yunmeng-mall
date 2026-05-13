@@ -8,6 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ym-item" />
+        <module name="ym-auth" />
+        <module name="ym-gateway" />
+        <module name="ym-common" />
+        <module name="ym-user" />
       </profile>
     </annotationProcessing>
   </component>

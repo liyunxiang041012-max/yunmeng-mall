@@ -27,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 import static com.liyun.user.constants.UserConstant.SMS_CODE;
+import static com.liyun.user.constants.UserConstant.USER_TOKEN;
 
 /**
  * <p>
@@ -66,21 +67,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw new BizException(ResultCode.USER_NOT_EXIST);
         }
 
-        // 2.校验密码
-        // BCrypt校验
 
         // 3.生成token
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
         claims.put("role", user.getRole());
         String token = JwtUtils.createToken(claims, secret, expire);
-
+        String redisKey = USER_TOKEN + user.getId();
+        redisTemplate.opsForValue().set(redisKey, token, expire, TimeUnit.MILLISECONDS);
         // 4.封装VO返回
         LoginVO vo = new LoginVO();
         vo.setToken(token);
         vo.setNickname(user.getNickname());
         vo.setAvatar(user.getAvatar());
         vo.setRole(user.getRole());
+
         return vo;
     }
 

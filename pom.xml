@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.3</version>
+        <version>3.2.5</version>
         <relativePath/>
     </parent>
 
@@ -33,6 +33,7 @@
         <knife4j.version>4.4.0</knife4j.version>
         <redisson.version>3.25.0</redisson.version>
         <xxl-job.version>2.4.1</xxl-job.version>
+
 
     </properties>
 

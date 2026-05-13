@@ -4,7 +4,78 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e587ff6f-8d30-4971-a61b-427fab3c1406" name="更改" comment="" />
+    <list default="true" id="e587ff6f-8d30-4971-a61b-427fab3c1406" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/utils/PageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/doc/ItemDoc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ItemDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ItemSkuDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/vo/ItemDetailVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/vo/ItemVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/query/ItemPageQuery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/repository/ItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/CategoryCacheService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/dto/AddressDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/utils/UserContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/context/UserContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/context/UserContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/enums/ResultCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/enums/ResultCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/exception/BizException.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/exception/BizException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/interceptor/UserInfoInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/interceptor/UserInfoInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/query/PageQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/query/PageQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ArrayUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ArrayUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/BeanUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/BeanUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ByteUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ByteUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/CollUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/CollUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/Convert.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/Convert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/DateUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/JwtUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/JwtUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/MarkedRunnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/MarkedRunnable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/NumberUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/NumberUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ObjectUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ObjectUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ReflectUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/ReflectUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/RequestUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/RequestUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/SPELUtils$User.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/SPELUtils$User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/SPELUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/SPELUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/SqlWrapperUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/SqlWrapperUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$CalculateDataProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$CalculateDataProcessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$DataProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$DataProcessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$Filter.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$Filter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$ToListDataProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils$ToListDataProcessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/TreeDataUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/UserContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/UserContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/filter/AuthGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/filter/AuthGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/YUNGatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/YUNGatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/filter/AuthGlobalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/filter/AuthGlobalFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/ItemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/ItemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/constants/UserConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/constants/UserConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserAddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/IUserAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/IUserAddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserAddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserAddressServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/UserApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/UserApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/config/WebMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/constants/UserConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/constants/UserConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserAddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserAddressController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/dto/LoginDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/dto/LoginDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/dto/RegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/dto/RegisterDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/UserAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/UserAddress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/vo/LoginVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/vo/LoginVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserAddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserAddressService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserAddressServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserAddressServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserServiceImpl.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +88,21 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;liyunxiang1012-cyber&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/liyunxiang1012-cyber/yunmeng-back.git&quot;,
+    &quot;accountId&quot;: &quot;4e2c41b3-46be-4a55-86d6-691d26dd51cb&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -33,36 +119,43 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="3BF6RyrgvriInkkc1O3zrQj0zkW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.ym-common [clean].executor": "Run",
-    "Maven.yunmeng-mall-back [install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.UserApplication.executor": "Run",
-    "Spring Boot.YUNGatewayApplication.executor": "Run",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/code/yunmeng-mall-back/ym-item/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.ym-common [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.yunmeng-mall-back [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ItemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.YUNGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.YmItemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/code/yunmeng-mall-back/ym-item/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\code\yunmeng-mall-back\ym-item\src\main\resources" />
@@ -86,6 +179,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.YUNGatewayApplication">
+    <configuration name="ItemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ym-item" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.item.ItemApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ym-user" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.user.UserApplication" />
@@ -106,13 +206,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YmItemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ym-item" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.ymitem.YmItemApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ItemApplication" />
+      <item itemvalue="Spring Boot.UserApplication" />
+      <item itemvalue="Spring Boot.YUNGatewayApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -139,11 +237,28 @@
       <workItem from="1778119439262" duration="14817000" />
       <workItem from="1778156551046" duration="4267000" />
       <workItem from="1778290159343" duration="1291000" />
-      <workItem from="1778292406755" duration="700000" />
+      <workItem from="1778292406755" duration="1029000" />
+      <workItem from="1778293456431" duration="3072000" />
+      <workItem from="1778299528678" duration="1554000" />
+      <workItem from="1778301273320" duration="1412000" />
+      <workItem from="1778302719811" duration="4015000" />
+      <workItem from="1778492839122" duration="7212000" />
+      <workItem from="1778662797125" duration="7018000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
