@@ -37,8 +37,18 @@ public class UserAddressServiceImpl extends ServiceImpl<UserAddressMapper, UserA
         if (list.size() >= 5){
             throw new RuntimeException("最多添加5个收货地址");
         }
-        if (list.size() == 0){
-          userAddress.setIsDefault(1);
+        if (list.size() == 0) {
+            userAddress.setIsDefault(1);
+        } else {
+            userAddress.setIsDefault(addressDTO.getIsDefault());
+        }
+
+        if (userAddress.getIsDefault() == 1){
+            UserAddress oldDefault = lambdaQuery().eq(UserAddress::getUserId, userId).eq(UserAddress::getIsDefault, 1).one();
+            if (oldDefault != null){
+                oldDefault.setIsDefault(0);
+                updateById(oldDefault);
+            }
         }
 
         log.info("用户id:{}",userId);
@@ -47,12 +57,48 @@ public class UserAddressServiceImpl extends ServiceImpl<UserAddressMapper, UserA
                 .setReceiver(addressDTO.getReceiver())
                 .setPhone(addressDTO.getPhone())
                 .setAddress(addressDTO.getAddress())
-                .setIsDefault(addressDTO.getIsDefault())
-                .setCreateTime(DateUtils.now())
-                .setCreateTime(DateUtils.now());
+                .setUpdateTime(DateUtils.now());
+
         save(userAddress);
 
 
 
     }
+
+    @Override
+    public void updateAddress(Long id, AddressDTO addressDTO) {
+        //1.获取用户id
+        Long userId = UserContext.getUserId();
+        UserAddress userAddress = lambdaQuery().eq(UserAddress::getUserId, userId).eq(UserAddress::getId, id).one();
+        //2.判断用户地址是否存在
+        if (userAddress == null){
+            throw new RuntimeException("用户地址不存在");
+        }
+        //3.更新用户地址
+        userAddress.setReceiver(addressDTO.getReceiver())
+                .setPhone(addressDTO.getPhone())
+                .setAddress(addressDTO.getAddress())
+                .setIsDefault(addressDTO.getIsDefault())
+                .setUpdateTime(DateUtils.now());
+                updateById(userAddress);
+
+    }
+
+    @Override
+    public void setDefault(Long id) {
+         Long userId = UserContext.getUserId();
+         UserAddress userAddress = lambdaQuery().eq(UserAddress::getUserId, userId).eq(UserAddress::getId, id).one();
+        if (userAddress == null){
+            throw new RuntimeException("用户地址不存在");
+        }
+        UserAddress oldDefault = lambdaQuery().eq(UserAddress::getUserId, userId).eq(UserAddress::getIsDefault, 1).one();
+        if (oldDefault != null){
+            oldDefault.setIsDefault(0);
+            updateById(oldDefault);
+        }
+         userAddress.setIsDefault(1);
+         updateById(userAddress);
+    }
+
+
 }

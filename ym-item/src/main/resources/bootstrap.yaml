@@ -15,3 +15,6 @@ spring:
             refresh: false
           - data-id: ym-item.yaml
             refresh: false
+          - data-id: shared-mq.yaml
+            group: DEFAULT_GROUP
+            refresh: true

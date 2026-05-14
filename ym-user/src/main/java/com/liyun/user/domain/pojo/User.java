@@ -50,29 +50,14 @@ public class User implements Serializable {
     @TableField("phone")
     private String phone;
 
-    /**
-     * 昵称
-     */
-    @TableField("nickname")
-    private String nickname;
 
-    /**
-     * 头像URL
-     */
-    @TableField("avatar")
-    private String avatar;
+
 
     /**
      * 角色 0用户 1商家 2管理员
      */
     @TableField("role")
     private Integer role;
-
-    /**
-     * 会员等级 1-5
-     */
-    @TableField("level")
-    private Integer level;
 
     /**
      * 状态 0禁用 1正常

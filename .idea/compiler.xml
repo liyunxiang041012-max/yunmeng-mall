@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ym-item" />
+        <module name="ym-api" />
         <module name="ym-auth" />
         <module name="ym-gateway" />
         <module name="ym-common" />
@@ -17,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ym-api" options="-parameters" />
       <module name="ym-auth" options="-parameters" />
       <module name="ym-common" options="-parameters" />
       <module name="ym-gateway" options="-parameters" />

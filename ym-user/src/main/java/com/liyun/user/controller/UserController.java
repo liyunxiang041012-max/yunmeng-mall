@@ -1,13 +1,17 @@
 package com.liyun.user.controller;
 
 
+
 import com.liyun.common.utils.Result;
 import com.liyun.user.domain.dto.LoginDTO;
 import com.liyun.user.domain.dto.RegisterDTO;
+import com.liyun.user.domain.dto.RegisterShopDTO;
 import com.liyun.user.domain.vo.LoginVO;
+import com.liyun.user.domain.vo.UserDetailVO;
 import com.liyun.user.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +36,7 @@ public class UserController {
     @PostMapping("/login")
     public Result<LoginVO> userLogin(@RequestBody LoginDTO loginDTO) {
         LoginVO vo = userService.login(loginDTO);
+
         return Result.success(vo);
     }
 
@@ -45,9 +50,48 @@ public class UserController {
 
     @Operation(summary = "用户注册")
     @PostMapping("/register")
-    public Result register(@RequestBody RegisterDTO registerDTO){
-     userService.register(registerDTO);
+    public Result register(@RequestBody RegisterDTO registerDTO, HttpServletRequest  request){
+        String ip = getClientIp( request);
+     userService.register(registerDTO, ip);
      return Result.success();
     }
+    @Operation(summary = "商家注册")
+    @PostMapping("/shop/register")
+    public Result registerShop(@RequestBody RegisterShopDTO registerDTO, HttpServletRequest  request){
+        String ip = getClientIp( request);
+        userService.registerShop(registerDTO, ip);
+        return Result.success();
+    }
+    @Operation(summary = "获取用户详细信息")
+    @GetMapping("/detail")
+    public Result<UserDetailVO> info() {
+         UserDetailVO vo = userService.getUserDetail();
 
+        return Result.success(vo);
+    }
+    @Operation(summary = "登出")
+    @PostMapping("/logout")
+    public Result logout() {
+        userService.logout();
+        return Result.success();
+    }
+
+    public static String getClientIp(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+        if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
+            // X-Forwarded-For 可能有多个IP，第一个才是真实客户端
+            ip = ip.split(",")[0].trim();
+        }
+        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("X-Real-IP");
+        }
+        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        // 本地开发兼容
+        if ("0:0:0:0:0:0:0:1".equals(ip) || "::1".equals(ip)) {
+            ip = "127.0.0.1";
+        }
+        return ip;
+    }
 }

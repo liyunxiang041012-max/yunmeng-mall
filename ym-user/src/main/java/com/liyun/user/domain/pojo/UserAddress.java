@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -27,6 +30,7 @@ public class UserAddress implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @JsonSerialize(using =  ToStringSerializer.class)
     private Long id;
 
     /**
@@ -59,8 +63,6 @@ public class UserAddress implements Serializable {
     @TableField("is_default")
     private Integer isDefault;
 
-    @TableField("create_time")
-    private LocalDateTime createTime;
 
     @TableField("update_time")
     private LocalDateTime updateTime;

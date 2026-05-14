@@ -93,6 +93,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
                     ServerHttpRequest mutatedRequest = exchange.getRequest().mutate()
                             .header("user-id", String.valueOf(userId))
                             .header("user-role", String.valueOf(role))
+                            .header("X-Real-IP", exchange.getRequest().getRemoteAddress().getAddress().getHostAddress()) // 加这行
                             .build();
                     return chain.filter(exchange.mutate().request(mutatedRequest).build());
                 })

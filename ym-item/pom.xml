@@ -16,6 +16,11 @@
     <description>商品服务</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.liyun</groupId>
+            <artifactId>ym-api</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!-- Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

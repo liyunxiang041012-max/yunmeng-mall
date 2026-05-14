@@ -15,4 +15,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IUserAddressService extends IService<UserAddress> {
 
     void add(AddressDTO addressDTO);
+
+    void updateAddress(Long id, AddressDTO addressDTO);
+
+    void setDefault(Long id);
+
+
 }

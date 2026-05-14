@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ym-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ym-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ym-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ym-gateway/src/main/java" charset="UTF-8" />
