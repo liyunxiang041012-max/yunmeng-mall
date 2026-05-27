@@ -42,9 +42,9 @@ spring:
 aliyun:
   oss:
     endpoint: oss-cn-hangzhou.aliyuncs.com  # OSS访问域名
-    access-key-id: your-access-key-id       # 访问密钥ID
-    access-key-secret: your-access-key-secret  # 访问密钥Secret
-    bucket-name: your-bucket-name           # 存储空间名称
+    access-key-id: LTAI5t6DtyFWH6H8uwBZC6aU    # 访问密钥ID
+    access-key-secret: JxbhyKVeaaKl0m8RzAPrHFv7sQmo1o  # 访问密钥Secret
+    bucket-name: yunmengmall           # 存储空间名称
 ```
 
 ## 3. 在代码中使用

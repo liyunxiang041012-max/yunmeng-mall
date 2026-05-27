@@ -19,4 +19,11 @@ public interface IItemSkuService extends IService<ItemSku> {
     SkuInfoDTO getSkuInfo(Long skuId);
 
     List<SkuInfoDTO> batchGetSkuInfo(List<Long> skuIds);
+
+    /**
+     * 扣减库存
+     * @param skuId SKU ID
+     * @param quantity 扣减数量
+     */
+    void deductStock(Long skuId, Integer quantity);
 }

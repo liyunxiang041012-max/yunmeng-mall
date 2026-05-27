@@ -147,3 +147,4 @@ public Result<String> upload(MultipartFile file) {
 ---
 **完整文档**: 查看 `AI开发指南.md`  
 **最后更新**: 2026-05-27
+自己写完可以看情况更新ai开发 但是重要的再更新

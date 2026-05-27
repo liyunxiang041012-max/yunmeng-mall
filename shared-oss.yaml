@@ -9,15 +9,15 @@ aliyun:
     # 示例: 
     #   - 公网: oss-cn-hangzhou.aliyuncs.com
     #   - 内网: oss-cn-hangzhou-internal.aliyuncs.com (推荐在阿里云服务器上使用内网，免流量费)
-    endpoint: oss-cn-hangzhou-internal.aliyuncs.com
+    endpoint: oss-cn-hangzhou.aliyuncs.com
     
     # 访问密钥ID
     # 建议通过环境变量或配置中心加密存储
-    access-key-id: LTAI5t7PL9CHzacZFGnBKp5n
+    access-key-id: LTAI5t6DtyFWH6H8uwBZC6aU
     
     # 访问密钥Secret
     # 建议通过环境变量或配置中心加密存储
-    access-key-secret: mpPNG0uwy6mMFXrreBeH1CrDby3zdS
+    access-key-secret: JxbhyKVeaaKl0m8RzAPrHFv7sQmo1o
     
     # 存储空间名称
     bucket-name: yunmengmall

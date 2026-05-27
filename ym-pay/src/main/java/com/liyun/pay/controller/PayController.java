@@ -24,9 +24,8 @@ public class PayController {
     @Operation(summary = "创建支付单")
     @PostMapping("/create")
     public Result<PayVO> create(@Valid @RequestBody PayDTO payDTO) {
-
-        return Result.success();
-
+        PayVO vo = payService.createPay(payDTO);
+        return Result.success(vo);
     }
 
     @Operation(summary = "查询支付记录列表")
@@ -47,6 +46,13 @@ public class PayController {
     @PutMapping("/cancel/{id}")
     public Result<Void> cancel(@PathVariable Long id) {
         payService.cancelPay(id);
+        return Result.success();
+    }
+
+    @Operation(summary = "支付成功回调（模拟）")
+    @PostMapping("/callback/{payNo}")
+    public Result<Void> payCallback(@PathVariable String payNo) {
+        payService.paySuccess(payNo);
         return Result.success();
     }
 }

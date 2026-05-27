@@ -1,5 +1,6 @@
 package com.liyun.pay.controller;
 
+import com.liyun.common.context.UserContext;
 import com.liyun.pay.domain.dto.OrderDTO;
 import com.liyun.pay.domain.dto.UpdateOrderStatusDTO;
 import com.liyun.pay.domain.pojo.Order;
@@ -24,7 +25,6 @@ public class OrderController {
     @Operation(summary = "创建订单")
     @PostMapping("/create")
     public Result<String> create(@Valid @RequestBody OrderDTO dto) {
-        // TODO: 从上下文获取userId
        String orderId =  orderService.createOrder(dto);
         return Result.success(orderId);
     }
@@ -32,8 +32,7 @@ public class OrderController {
     @Operation(summary = "查询订单列表")
     @GetMapping("/list")
     public Result<List<Order>> list() {
-        // TODO: 从上下文获取userId
-        Long userId = 1L;
+        Long userId = UserContext.getUserId();
         List<Order> list = orderService.orderList(userId);
         return Result.success(list);
     }

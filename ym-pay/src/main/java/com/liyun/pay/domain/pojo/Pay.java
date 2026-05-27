@@ -78,4 +78,19 @@ public class Pay implements Serializable {
      */
     private LocalDateTime updateTime;
 
+    /**
+     * 收货地址 ID
+     */
+    private Long addressId;
+
+    /**
+     * 订单备注
+     */
+    private String note;
+
+    /**
+     * 优惠券 ID
+     */
+    private Long couponId;
+
 }

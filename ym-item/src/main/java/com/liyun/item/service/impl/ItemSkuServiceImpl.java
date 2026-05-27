@@ -2,6 +2,8 @@ package com.liyun.item.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.liyun.api.dto.SkuInfoDTO;
+import com.liyun.common.enums.ResultCode;
+import com.liyun.common.exception.BizException;
 import com.liyun.common.utils.BeanUtils;
 import com.liyun.item.domain.pojo.Item;
 import com.liyun.item.domain.pojo.ItemSku;
@@ -90,5 +92,18 @@ public class ItemSkuServiceImpl extends ServiceImpl<ItemSkuMapper, ItemSku> impl
 
             return dto;
         }).filter(dto -> dto != null).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deductStock(Long skuId, Integer quantity) {
+        ItemSku sku = getById(skuId);
+        if (sku == null) {
+            throw new BizException(ResultCode.NOT_FOUND, "商品SKU不存在");
+        }
+        if (sku.getStock() == null || sku.getStock() < quantity) {
+            throw new BizException(ResultCode.FAIL, "库存不足，skuId：" + skuId);
+        }
+        sku.setStock(sku.getStock() - quantity);
+        updateById(sku);
     }
 }

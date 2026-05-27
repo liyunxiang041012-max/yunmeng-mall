@@ -20,6 +20,9 @@ spring:
             refresh: true
           - data-id: shared-xxljob.yaml
             refresh: true
+          - data-id: shared-oss.yaml
+            group: DEFAULT_GROUP
+            refresh: false
 xxl:
   job:
     executor:

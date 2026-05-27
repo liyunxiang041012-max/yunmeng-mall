@@ -24,4 +24,9 @@ public interface IPayService extends IService<Pay> {
     PayVO getPayDetail(Long id);
 
     void cancelPay(Long id);
+
+    /**
+     * 支付成功回调（模拟第三方支付回调）
+     */
+    void paySuccess(String payNo);
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface ItemFeign {
 
     @PostMapping("/item/batch-info")
     List<ItemInfoDTO> batchGetItemInfo(@RequestBody List<Long> itemIds);
+
+    @PostMapping("/sku/deduct-stock")
+    void deductStock(@RequestParam("skuId") Long skuId, @RequestParam("quantity") Integer quantity);
 }

@@ -1,5 +1,6 @@
 package com.liyun.pay.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;
 
 @Getter
@@ -12,6 +13,7 @@ public enum OrderStatus {
     CANCELLED(4, "已取消"),
     REFUNDED(5, "已退款");
 
+    @EnumValue
     private final int code;
     private final String desc;
 

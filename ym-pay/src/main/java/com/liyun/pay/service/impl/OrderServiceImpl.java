@@ -1,19 +1,17 @@
 package com.liyun.pay.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liyun.api.client.ItemFeign;
-import com.liyun.api.client.ShopFeign;
-import com.liyun.api.dto.ItemInfoDTO;
-import com.liyun.api.dto.ShopInfoDTO;
 import com.liyun.api.dto.SkuInfoDTO;
 import com.liyun.common.context.UserContext;
-import com.liyun.common.utils.Result;
+import com.liyun.common.enums.ResultCode;
+import com.liyun.common.exception.BizException;
 import com.liyun.pay.domain.dto.OrderDTO;
 import com.liyun.pay.domain.pojo.Order;
 import com.liyun.pay.domain.pojo.OrderItem;
 import com.liyun.pay.enums.OrderStatus;
 import com.liyun.pay.mapper.OrderMapper;
+import com.liyun.pay.service.IOrderItemService;
 import com.liyun.pay.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,39 +37,39 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
 
     private final ItemFeign itemFeign;
-    private final ShopFeign shopFeign;
+    private final IOrderItemService orderItemService;
     @Override
     @Transactional
     public String createOrder(OrderDTO dto) {
         // 1. 参数校验
         if (dto == null || dto.getItems() == null || dto.getItems().isEmpty()) {
-            throw new RuntimeException("订单商品不能为空");
+            throw new BizException(ResultCode.PARAM_ERROR, "订单商品不能为空");
         }
 
         // 2. 获取用户ID
         Long userId = UserContext.getUserId();
         if (userId == null) {
-            throw new RuntimeException("用户未登录");
+            throw new BizException(ResultCode.UNAUTHORIZED);
         }
 
         // 3. 校验订单项
         for (OrderDTO.OrderItemDTO item : dto.getItems()) {
             if (item.getSkuId() == null) {
-                throw new RuntimeException("商品SKU ID不能为空");
+                throw new BizException(ResultCode.PARAM_ERROR, "商品SKU ID不能为空");
             }
             if (item.getQuantity() == null || item.getQuantity() <= 0) {
-                throw new RuntimeException("购买数量必须大于0");
+                throw new BizException(ResultCode.PARAM_ERROR, "购买数量必须大于0");
             }
         }
 
-        // 4. 查询SKU信息
+        // 4. 批量查询SKU信息
         List<Long> skuIds = dto.getItems().stream()
                 .map(OrderDTO.OrderItemDTO::getSkuId)
                 .collect(Collectors.toList());
 
         List<SkuInfoDTO> skuList = itemFeign.batchGetSkuInfo(skuIds);
         if (skuList == null || skuList.isEmpty()) {
-            throw new RuntimeException("查询商品信息失败");
+            throw new BizException(ResultCode.FAIL, "查询商品信息失败");
         }
 
         // 5. 转成Map便于查找
@@ -87,13 +85,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             SkuInfoDTO sku = skuMap.get(item.getSkuId());
 
             if (sku == null) {
-                throw new RuntimeException("商品不存在，skuId：" + item.getSkuId());
+                throw new BizException(ResultCode.NOT_FOUND, "商品不存在，skuId：" + item.getSkuId());
             }
             if (sku.getStock() == null || sku.getStock() < item.getQuantity()) {
-                throw new RuntimeException("商品库存不足，skuId：" + item.getSkuId());
+                throw new BizException(ResultCode.FAIL, "商品库存不足，skuId：" + item.getSkuId());
             }
             if (sku.getPrice() == null || sku.getPrice() <= 0) {
-                throw new RuntimeException("商品价格异常，skuId：" + item.getSkuId());
+                throw new BizException(ResultCode.FAIL, "商品价格异常，skuId：" + item.getSkuId());
             }
 
             // 计算小计
@@ -114,19 +112,36 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             orderItems.add(orderItem);
         }
 
-        // 7. 创建订单
+        // 7. 计算优惠金额
+        long discountAmount = 0L;
+        // TODO: 优惠券逻辑，根据 dto.getCouponId() 查询优惠券并计算 discountAmount
+
+        long payAmount = totalAmount - discountAmount;
+        if (payAmount < 0) {
+            payAmount = 0L;
+        }
+
+        // 8. 创建订单
         Order order = new Order();
         order.setId(orderId);
         order.setUserId(userId);
-        // 注意：如果是多店铺订单，需要按店铺拆单，这里取第一个商品的shopId
         order.setShopId(orderItems.get(0).getShopId());
         order.setTotalAmount(totalAmount);
+        order.setPayAmount(payAmount);
+        order.setCouponId(dto.getCouponId());
+        order.setDiscountAmount(discountAmount);
         order.setStatus(OrderStatus.PENDING_PAYMENT);
         order.setCreateTime(LocalDateTime.now());
+        order.setUpdateTime(LocalDateTime.now());
 
-        // 8. 保存订单和订单项
+        // 9. 保存订单和订单项
         save(order);
-        // TODO: 保存 orderItems （需要 OrderItemService 或批量插入）
+        orderItemService.saveOrderItems(orderItems);
+
+        // 10. 扣减库存
+        for (OrderDTO.OrderItemDTO item : dto.getItems()) {
+            itemFeign.deductStock(item.getSkuId(), item.getQuantity());
+        }
 
         return orderId;
     }
@@ -139,23 +154,47 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     public List<Order> orderList(Long userId) {
-        // TODO: 实现查询订单列表逻辑
-        return null;
+        return list(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<Order>()
+                .eq(Order::getUserId, userId)
+                .orderByDesc(Order::getCreateTime));
     }
 
     @Override
     public Order getOrderDetail(String orderId) {
-        // TODO: 实现查询订单详情逻辑
-        return null;
+        Order order = getById(orderId);
+        if (order == null) {
+            throw new BizException(ResultCode.NOT_FOUND, "订单不存在");
+        }
+        return order;
     }
 
     @Override
+    @Transactional
     public void cancelOrder(String orderId) {
-        // TODO: 实现取消订单逻辑
+        Order order = getById(orderId);
+        if (order == null) {
+            throw new BizException(ResultCode.NOT_FOUND, "订单不存在");
+        }
+        if (order.getStatus() != OrderStatus.PENDING_PAYMENT) {
+            throw new BizException(ResultCode.FAIL, "只能取消待付款订单");
+        }
+        order.setStatus(OrderStatus.CANCELLED);
+        order.setUpdateTime(LocalDateTime.now());
+        updateById(order);
     }
 
     @Override
+    @Transactional
     public void updateOrderStatus(String orderId, Integer status) {
-        // TODO: 实现更新订单状态逻辑
+        Order order = getById(orderId);
+        if (order == null) {
+            throw new BizException(ResultCode.NOT_FOUND, "订单不存在");
+        }
+        order.setStatus(OrderStatus.of(status));
+        order.setUpdateTime(LocalDateTime.now());
+        if (status == OrderStatus.PAID.getCode()) {
+            order.setPayTime(LocalDateTime.now());
+        }
+        updateById(order);
     }
 }

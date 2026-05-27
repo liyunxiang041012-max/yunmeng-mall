@@ -16,4 +16,11 @@ public class PayDTO {
     @NotNull(message = "支付金额不能为空")
     private Long amount;        // 支付金额，分为单位
 
+    @NotNull(message = "收货地址不能为空")
+    private Long addressId;     // 收货地址 ID
+
+    private String note;        // 订单备注
+
+    private Long couponId;      // 优惠券 ID
+
 }

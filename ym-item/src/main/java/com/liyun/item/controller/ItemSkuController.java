@@ -33,4 +33,10 @@ public class ItemSkuController {
     public List<SkuInfoDTO> batchGetSkuInfo(@RequestBody List<Long> skuIds) {
         return itemSkuService.batchGetSkuInfo(skuIds);
     }
+
+    @Operation(summary = "扣减库存")
+    @PostMapping("/deduct-stock")
+    public void deductStock(@RequestParam("skuId") Long skuId, @RequestParam("quantity") Integer quantity) {
+        itemSkuService.deductStock(skuId, quantity);
+    }
 }

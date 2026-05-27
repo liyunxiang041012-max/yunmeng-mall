@@ -16,4 +16,5 @@ public class PayVO {
     private PayStatus status;
     private LocalDateTime payTime;
     private LocalDateTime createTime;
+    private String payUrl;  // 支付链接/二维码数据
 }

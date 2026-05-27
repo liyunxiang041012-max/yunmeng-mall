@@ -1,5 +1,6 @@
 package com.liyun.pay.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;
 
 @Getter
@@ -7,9 +8,11 @@ public enum PayStatus {
 
     PENDING(0, "待支付"),
     PAID(1, "已支付"),
-    REFUNDED(2, "已退款"),
-    CLOSED(3, "已关闭");
+    FAILED(2, "已失败"),
+    REFUNDED(3, "已退款"),
+    CANCELLED(4, "已取消");
 
+    @EnumValue
     private final int code;
     private final String desc;
 
