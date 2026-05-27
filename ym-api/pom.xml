@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.liyun</groupId>
+        <artifactId>yunmeng-mall-back</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ym-api</artifactId>
+    <version>1.0</version>
+    <name>yunmeng-api</name>
+    <description>Feign接口模块</description>
+
+    <dependencies>
+        <!-- OpenFeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- 公共模块（DTO、Result、异常等） -->
+        <dependency>
+            <groupId>com.liyun</groupId>
+            <artifactId>ym-common</artifactId>
+        </dependency>
+        <!-- Swagger注解（DTO上用了@Schema） -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
