@@ -6,12 +6,16 @@ import com.liyun.api.client.ItemFeign;
 import com.liyun.api.client.ShopFeign;
 import com.liyun.api.dto.SkuInfoDTO;
 import com.liyun.api.vo.ShopCartVO;
+import com.liyun.common.context.UserContext;
+import com.liyun.common.enums.ResultCode;
+import com.liyun.common.exception.BizException;
 import com.liyun.pay.domain.dto.CartDTO;
 import com.liyun.pay.domain.pojo.Cart;
 import com.liyun.pay.domain.vo.CartVO;
 import com.liyun.pay.mapper.CartMapper;
 import com.liyun.pay.service.ICartService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,13 +30,18 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements ICartService {
 
     private final ItemFeign itemFeign;
     private final ShopFeign shopFeign;
 
     private Long getCurrentUserId() {
-        return 1L;
+        Long userId = UserContext.getUserId();
+        if (userId == null) {
+            throw new BizException(ResultCode.UNAUTHORIZED);
+        }
+        return userId;
     }
 
     @Override
@@ -193,5 +202,22 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         this.remove(new LambdaQueryWrapper<Cart>()
                 .eq(Cart::getUserId, userId)
                 .in(Cart::getId, ids));
+    }
+
+    @Override
+    @Transactional
+    public void deleteCartBySkuIds(List<Long> skuIds) {
+        if (skuIds == null || skuIds.isEmpty()) {
+            log.warn("skuIds为空，跳过删除");
+            return;
+        }
+        Long userId = getCurrentUserId();
+        log.info("删除购物车商品，userId: {}, skuIds: {}", userId, skuIds);
+        
+        this.remove(new LambdaQueryWrapper<Cart>()
+                .eq(Cart::getUserId, userId)
+                .in(Cart::getSkuId, skuIds));
+        
+        log.info("购物车删除操作完成");
     }
 }

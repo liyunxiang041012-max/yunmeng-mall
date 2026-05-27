@@ -49,13 +49,20 @@ public class UserProfileServiceImpl extends ServiceImpl<UserProfileMapper, UserP
 
         // 3. 上传到OSS
         String avatarUrl = ossUtils.upload(file, OssDirConstants.USER_HEADER);
+        
+        log.info("OSS上传成功，用户ID: {}, 头像URL: {}", userId, avatarUrl);
 
-        // 4. 更新头像
+        // 4. 更新头像到数据库
         userProfile.setAvatar(avatarUrl);
         userProfile.setUpdateTime(DateUtils.now());
-        updateById(userProfile);
+        boolean updated = updateById(userProfile);
+        
+        log.info("数据库更新结果: {}, 用户ID: {}, 新头像URL: {}", updated, userId, avatarUrl);
+        
+        if (!updated) {
+            throw new BizException(ResultCode.FAIL, "头像更新失败");
+        }
 
-        log.info("用户头像更新成功，用户ID: {}, 头像URL: {}", userId, avatarUrl);
         return avatarUrl;
     }
 }

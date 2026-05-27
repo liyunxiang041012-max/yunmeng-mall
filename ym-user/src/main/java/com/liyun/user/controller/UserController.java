@@ -9,12 +9,15 @@ import com.liyun.user.domain.dto.RegisterShopDTO;
 import com.liyun.user.domain.pojo.User;
 import com.liyun.user.domain.vo.LoginVO;
 import com.liyun.user.domain.vo.UserDetailVO;
+import com.liyun.user.service.IUserProfileService;
 import com.liyun.user.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -30,8 +33,10 @@ import java.util.Map;
 @RequestMapping("/user")
 @Tag(name = "用户管理", description = "用户登录、注册等接口")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
     private final IUserService userService;
+    private final IUserProfileService userProfileService;
 
     @Operation(summary = "用户登录")
     @PostMapping("/login")
@@ -74,6 +79,15 @@ public class UserController {
     public Result logout() {
         userService.logout();
         return Result.success();
+    }
+
+    @Operation(summary = "上传头像")
+    @PostMapping("/avatar")
+    public Result<String> uploadAvatar(@RequestParam("file") MultipartFile file) {
+        // 上传文件到 OSS 并更新数据库（在 uploadAvatar 方法中已完成）
+        String avatarUrl = userProfileService.uploadAvatar(file);
+        log.info("头像上传完成，返回URL: {}", avatarUrl);
+        return Result.success(avatarUrl);
     }
 
     public static String getClientIp(HttpServletRequest request) {

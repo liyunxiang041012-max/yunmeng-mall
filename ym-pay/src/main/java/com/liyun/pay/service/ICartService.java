@@ -24,4 +24,9 @@ public interface ICartService extends IService<Cart> {
     void updateCart(CartDTO dto);
 
     void deleteCart(List<Long> ids);
+
+    /**
+     * 根据skuId列表删除购物车商品
+     */
+    void deleteCartBySkuIds(List<Long> skuIds);
 }
