@@ -20,6 +20,9 @@ spring:
           - data-id: shared-mq.yaml
             group: DEFAULT_GROUP
             refresh: true
+          - data-id: shared-oss.yaml
+            group: DEFAULT_GROUP
+            refresh: false
 
 server:
   port: 8081

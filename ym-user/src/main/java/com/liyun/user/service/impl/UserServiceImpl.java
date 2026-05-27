@@ -285,4 +285,29 @@ return vo;
         Long userId = lambdaQuery().eq(User::getPhone, registerDTO.getPhone()).one().getId();
         return userId;
     }
+
+    @Override
+    public void updateAvatar(String avatarUrl) {
+        // 1. 获取当前登录用户ID
+        Long userId = UserContext.getUserId();
+        if (userId == null) {
+            throw new BizException(ResultCode.UNAUTHORIZED);
+        }
+
+        // 2. 更新用户头像到UserProfile表
+        UserProfile userProfile = userProfileService.lambdaQuery()
+                .eq(UserProfile::getId, userId)
+                .one();
+
+        if (userProfile == null) {
+            throw new BizException(ResultCode.USER_NOT_EXIST);
+        }
+
+        // 3. 更新头像
+        userProfile.setAvatar(avatarUrl);
+        userProfile.setUpdateTime(DateUtils.now());
+        userProfileService.updateById(userProfile);
+
+        log.info("用户头像更新成功，用户ID: {}, 头像URL: {}", userId, avatarUrl);
+    }
 }

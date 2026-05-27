@@ -29,4 +29,11 @@ public interface IUserService extends IService<User> {
     void logout();
 
     Long registerShop(RegisterShopDTO registerDTO, String ip);
+
+    /**
+     * 更新用户头像
+     *
+     * @param avatarUrl 头像URL
+     */
+    void updateAvatar(String avatarUrl);
 }
