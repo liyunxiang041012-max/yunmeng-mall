@@ -1,0 +1,40 @@
+# 阿里云OSS配置
+# 配置名称: shared-oss.yaml
+# 配置格式: YAML
+# 用途: 在Nacos中共享的OSS配置
+
+aliyun:
+  oss:
+    # OSS访问域名
+    # 示例: 
+    #   - 公网: oss-cn-hangzhou.aliyuncs.com
+    #   - 内网: oss-cn-hangzhou-internal.aliyuncs.com (推荐在阿里云服务器上使用内网，免流量费)
+    endpoint: oss-cn-hangzhou-internal.aliyuncs.com
+    
+    # 访问密钥ID
+    # 建议通过环境变量或配置中心加密存储
+    access-key-id: LTAI5t7PL9CHzacZFGnBKp5n
+    
+    # 访问密钥Secret
+    # 建议通过环境变量或配置中心加密存储
+    access-key-secret: mpPNG0uwy6mMFXrreBeH1CrDby3zdS
+    
+    # 存储空间名称
+    bucket-name: yunmengmall
+    
+    # 目录前缀配置（可选）
+    # 用于区分不同类型的文件
+    dir-prefix:
+      # 商品相关图片
+      item: item
+      # 用户头像
+      user-header: user-header
+
+# Spring Boot文件上传配置（可选）
+spring:
+  servlet:
+    multipart:
+      # 单个文件最大大小
+      max-file-size: 100MB
+      # 请求最大大小
+      max-request-size: 100MB

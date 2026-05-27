@@ -17,6 +17,7 @@ import com.liyun.pay.mapper.OrderMapper;
 import com.liyun.pay.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private final ItemFeign itemFeign;
     private final ShopFeign shopFeign;
     @Override
+    @Transactional
     public String createOrder(OrderDTO dto) {
         // 1. 参数校验
         if (dto == null || dto.getItems() == null || dto.getItems().isEmpty()) {
@@ -109,7 +111,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                     .setImage(sku.getImage())
                     .setPrice((long) sku.getPrice())
                     .setQuantity(item.getQuantity());
-
             orderItems.add(orderItem);
         }
 
