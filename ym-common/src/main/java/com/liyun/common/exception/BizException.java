@@ -15,4 +15,10 @@ public class BizException extends RuntimeException {
         this.message = resultCode.getMessage();
     }
 
+    public BizException(ResultCode resultCode, String customMessage) {
+        super(customMessage);
+        this.code = resultCode.getCode();
+        this.message = customMessage;
+    }
+
 }

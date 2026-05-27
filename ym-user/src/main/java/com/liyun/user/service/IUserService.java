@@ -28,5 +28,5 @@ public interface IUserService extends IService<User> {
 
     void logout();
 
-    void registerShop(RegisterShopDTO registerDTO, String ip);
+    Long registerShop(RegisterShopDTO registerDTO, String ip);
 }

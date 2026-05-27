@@ -1,4 +1,4 @@
-package com.liyun.item.domain.vo;
+package com.liyun.api.vo;
 
 import lombok.Data;
 

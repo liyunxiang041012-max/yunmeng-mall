@@ -1,14 +1,13 @@
-package com.liyun.api.feign;
+package com.liyun.api.client;
 
 import com.liyun.api.dto.RegisterShopDTO;
-import com.liyun.common.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(value = "ym-user")
+@FeignClient(value = "ym-user", contextId = "userFeign")
 public interface UserFeign {
 
     @PostMapping("/user/shop/register")
-    Result registerShop(@RequestBody RegisterShopDTO registerDTO);
+    Long registerShop(@RequestBody RegisterShopDTO registerDTO);
 }

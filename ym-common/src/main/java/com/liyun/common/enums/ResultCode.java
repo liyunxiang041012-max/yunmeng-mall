@@ -16,7 +16,14 @@ public enum ResultCode {
     USER_EXIST(1001, "用户已存在"),
     USER_NOT_EXIST(1002, "用户不存在"),
     PASSWORD_ERROR(1003, "密码错误"),
-    ACCOUNT_DISABLED(1004, "账号已被禁用");
+    ACCOUNT_DISABLED(1004, "账号已被禁用"),
+
+    // 订单业务码（2000起步）
+    ORDER_ITEMS_EMPTY(2001, "订单商品列表不能为空"),
+    SKU_QUERY_FAILED(2002, "查询商品信息失败"),
+    SKU_NOT_FOUND(2003, "商品不存在"),
+    STOCK_NOT_ENOUGH(2004, "商品库存不足"),
+    MULTI_SHOP_NOT_ALLOWED(2005, "不支持多店铺下单");
 
     private final int code;
     private final String message;

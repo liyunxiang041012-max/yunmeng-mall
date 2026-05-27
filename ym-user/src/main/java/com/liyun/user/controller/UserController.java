@@ -6,6 +6,7 @@ import com.liyun.common.utils.Result;
 import com.liyun.user.domain.dto.LoginDTO;
 import com.liyun.user.domain.dto.RegisterDTO;
 import com.liyun.user.domain.dto.RegisterShopDTO;
+import com.liyun.user.domain.pojo.User;
 import com.liyun.user.domain.vo.LoginVO;
 import com.liyun.user.domain.vo.UserDetailVO;
 import com.liyun.user.service.IUserService;
@@ -57,10 +58,9 @@ public class UserController {
     }
     @Operation(summary = "商家注册")
     @PostMapping("/shop/register")
-    public Result registerShop(@RequestBody RegisterShopDTO registerDTO, HttpServletRequest  request){
+    public Long registerShop(@RequestBody RegisterShopDTO registerDTO, HttpServletRequest  request){
         String ip = getClientIp( request);
-        userService.registerShop(registerDTO, ip);
-        return Result.success();
+        return userService.registerShop(registerDTO, ip);
     }
     @Operation(summary = "获取用户详细信息")
     @GetMapping("/detail")

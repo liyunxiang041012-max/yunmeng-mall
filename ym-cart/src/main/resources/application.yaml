@@ -1,8 +1,0 @@
-server:
-  port: 8081
-
-spring:
-  cloud:
-    nacos:
-      discovery:
-        group: DEFAULT_GROUP

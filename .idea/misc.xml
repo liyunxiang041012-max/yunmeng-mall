@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/yunmeng-api/pom.xml" />
         <option value="$PROJECT_DIR$/ym-item/pom.xml" />
         <option value="$PROJECT_DIR$/ym-api/pom.xml" />
+        <option value="$PROJECT_DIR$/ym-cart/pom.xml" />
+        <option value="$PROJECT_DIR$/ym-pay/pom.xml" />
       </list>
     </option>
   </component>

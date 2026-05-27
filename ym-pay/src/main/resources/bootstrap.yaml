@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ym-cart
+    name: ym-pay
   cloud:
     nacos:
       server-addr: 192.168.150.101:8848
@@ -13,11 +13,12 @@ spring:
             refresh: false
           - data-id: shared-logs.yaml
             refresh: false
-          - data-id: ym-cart.yaml
+          - data-id: ym-pay.yaml
             refresh: false
           - data-id: shared-mq.yaml
             group: DEFAULT_GROUP
             refresh: true
-
+          - data-id: shared-xxljob.yaml
+            refresh: true
 server:
-  port: 8083
+  port: 8084

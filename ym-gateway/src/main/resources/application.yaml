@@ -25,6 +25,19 @@ spring:
             - Path=/it/**
           filters:
             - PreserveHostHeader
+        - id: ym-pay-cart
+          uri: lb://ym-pay
+          predicates:
+            - Path=/ca/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-pay
+          uri: lb://ym-pay
+          predicates:
+            - Path=/py/**
+          filters:
+            - PreserveHostHeader
+
       default-filters:
         - StripPrefix=1
       globalcors:

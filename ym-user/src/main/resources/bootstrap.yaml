@@ -4,6 +4,8 @@ spring:
   cloud:
     nacos:
       server-addr: 192.168.150.101:8848
+      discovery:
+        group: DEFAULT_GROUP
       config:
         file-extension: yaml
         shared-configs:
@@ -18,3 +20,6 @@ spring:
           - data-id: shared-mq.yaml
             group: DEFAULT_GROUP
             refresh: true
+
+server:
+  port: 8081

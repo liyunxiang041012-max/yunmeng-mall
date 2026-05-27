@@ -3,8 +3,10 @@ package com.liyun.item.domain.dto;
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
+@Data
 public class ShopDTO {
 
 
@@ -22,5 +24,6 @@ public class ShopDTO {
     private String password;
     @Schema(description = "昵称", example = "张三")
     private String nickname;
+
 
 }

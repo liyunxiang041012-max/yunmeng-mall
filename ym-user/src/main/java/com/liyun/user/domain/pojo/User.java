@@ -51,7 +51,8 @@ public class User implements Serializable {
     private String phone;
 
 
-
+    @TableField("nickname")
+    private String nickname;
 
     /**
      * 角色 0用户 1商家 2管理员

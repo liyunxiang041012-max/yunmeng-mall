@@ -9,10 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ym-item" />
         <module name="ym-api" />
-        <module name="ym-auth" />
         <module name="ym-gateway" />
         <module name="ym-common" />
         <module name="ym-user" />
+        <module name="ym-auth" />
+        <module name="ym-pay" />
       </profile>
     </annotationProcessing>
   </component>
@@ -23,6 +24,7 @@
       <module name="ym-common" options="-parameters" />
       <module name="ym-gateway" options="-parameters" />
       <module name="ym-item" options="-parameters" />
+      <module name="ym-pay" options="-parameters" />
       <module name="ym-user" options="-parameters" />
     </option>
   </component>

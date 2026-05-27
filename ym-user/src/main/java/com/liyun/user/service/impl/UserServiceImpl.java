@@ -185,6 +185,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         // 🛡️ 日志脱敏：不要打印完整 user（可能含密码哈希，虽不可逆但避免泄露）
         log.info("新用户注册成功，手机号: {}, 用户ID: {}", user.getPhone(), user.getId());
+
     }
 
     @Override
@@ -222,7 +223,7 @@ return vo;
 
     @Override
     @Transactional
-    public void registerShop(RegisterShopDTO registerDTO, String ip) {
+    public Long registerShop(RegisterShopDTO registerDTO, String ip) {
         // 1. 查询当前用户是否已存在
         User existingUser = lambdaQuery().eq(User::getPhone, registerDTO.getPhone()).one();
         if (existingUser != null) {
@@ -247,6 +248,7 @@ return vo;
         User user = new User();
         user.setPhone(registerDTO.getPhone());
         user.setUsername("shop" + RandomUtils.randomNumbers(26));
+        user.setNickname(registerDTO.getNickname());
         user.setRole(1); // 商家
 
         String rawPassword = registerDTO.getPassword();
@@ -280,5 +282,7 @@ return vo;
 
         log.info("新商家注册成功，手机号: {}, 用户ID: {}, 店铺名: {}",
                 user.getPhone(), user.getId(), registerDTO.getShopName());
+        Long userId = lambdaQuery().eq(User::getPhone, registerDTO.getPhone()).one().getId();
+        return userId;
     }
 }

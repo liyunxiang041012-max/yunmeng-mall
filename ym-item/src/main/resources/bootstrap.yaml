@@ -18,3 +18,12 @@ spring:
           - data-id: shared-mq.yaml
             group: DEFAULT_GROUP
             refresh: true
+          - data-id: shared-xxljob.yaml
+            refresh: true
+xxl:
+  job:
+    executor:
+      appname: ym-item-executor
+      port: 9998
+      logpath: /data/applogs/xxl-job/ym-item
+      logretentiondays: 30

@@ -18,6 +18,10 @@ public class Result<T> implements Serializable {
         this.timestamp = System.currentTimeMillis();
     }
 
+    public boolean isSuccess() {
+        return this.code != null && this.code.equals(ResultCode.SUCCESS.getCode());
+    }
+
     public static <T> Result<T> success() {
         Result<T> r = new Result<>();
         r.setCode(ResultCode.SUCCESS.getCode());

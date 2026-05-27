@@ -4,48 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e587ff6f-8d30-4971-a61b-427fab3c1406" name="更改" comment="我的页面地址相关接口提交1">
-      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ShopDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/dto/RegisterShopDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/vo/UserDetailVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/utils/IpUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ym-user/src/main/resources/ip2region_v4.xdb" afterDir="false" />
+    <list default="true" id="e587ff6f-8d30-4971-a61b-427fab3c1406" name="更改" comment="2026  5.14 12:07">
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/ItemFeign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/ShopFeign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/UserFeign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/dto/RegisterShopDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/dto/ShopInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/dto/SkuInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/vo/ShopCartVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/config/XxlJobConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/vo/ShopCartVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/job/ItemSyncJobHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/domain/dto/OrderDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/enums/OrderStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/enums/PayStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-pay/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ym-pay/src/main/resources/bootstrap.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/yunmengapi/YunmengApiApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-api/src/test/java/com/liyun/yunmengapi/YunmengApiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/enums/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/enums/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/exception/BizException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/exception/BizException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/utils/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/utils/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/utils/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/YUNGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/GatewayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/filter/AuthGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/filter/AuthGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/YUNGatewayApplication.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/filter/AuthGlobalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/target/classes/com/liyun/gateway/filter/AuthGlobalFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-item/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/ItemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/ItemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ShopDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ShopDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-item/src/main/resources/bootstrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/resources/bootstrap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserAddressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/dto/RegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/dto/RegisterDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/pojo/UserAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/domain/pojo/UserAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/IUserAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/IUserAddressService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserAddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserAddressServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/src/main/resources/bootstrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/resources/bootstrap.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserAddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserAddressController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/bootstrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/bootstrap.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/dto/RegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/dto/RegisterDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/UserAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/domain/pojo/UserAddress.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserAddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserAddressService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/IUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserAddressServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserAddressServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,13 +111,17 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.CartApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.ItemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PayApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.YUNGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.YmApiApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.YmItemApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/code/yunmeng-mall-back/ym-user/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/code/yunmeng-mall-back/ym-pay/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -124,20 +131,23 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\code\yunmeng-mall-back\ym-pay\src\main\resources" />
+      <recent name="E:\code\yunmeng-mall-back\ym-cart\src\main\resources" />
       <recent name="E:\code\yunmeng-mall-back\ym-user\src\main\resources" />
       <recent name="E:\code\yunmeng-mall-back\ym-item\src\main\resources" />
       <recent name="E:\code\yunmeng-mall-back\yunmeng-user\src\main\resources" />
-      <recent name="E:\code\yunmeng-mall-back" />
-      <recent name="E:\code\yunmeng-mall-back\yunmeng-common\src\main\java\com\liyun\common" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\code\yunmeng-mall-back" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.liyun.api.vo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -150,10 +160,36 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.YUNGatewayApplication">
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="ym-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.gateway.GatewayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liyun.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ItemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ym-item" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.item.ItemApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="ym-pay" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.pay.PayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liyun.pay.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,32 +201,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YUNGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ym-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.gateway.YUNGatewayApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liyun.gateway.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="YmApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="ym-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.liyun.ymapi.YmApiApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Spring Boot.YmApiApplication" />
       <item itemvalue="Spring Boot.ItemApplication" />
       <item itemvalue="Spring Boot.UserApplication" />
-      <item itemvalue="Spring Boot.YUNGatewayApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.PayApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.PayApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -225,6 +247,14 @@
       <workItem from="1778492839122" duration="7212000" />
       <workItem from="1778662797125" duration="16547000" />
       <workItem from="1778720184472" duration="10650000" />
+      <workItem from="1778731647086" duration="53000" />
+      <workItem from="1779358613277" duration="233000" />
+      <workItem from="1779358853802" duration="17757000" />
+      <workItem from="1779451235353" duration="4550000" />
+      <workItem from="1779499580476" duration="188000" />
+      <workItem from="1779499776435" duration="8090000" />
+      <workItem from="1779687929628" duration="7093000" />
+      <workItem from="1779795202929" duration="1958000" />
     </task>
     <task id="LOCAL-00001" summary="我的页面地址相关接口提交1">
       <option name="closed" value="true" />
@@ -234,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778673606515</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2026  5.14 12:07">
+      <option name="closed" value="true" />
+      <created>1778731685209</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778731685209</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +318,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="我的页面地址相关接口提交1" />
-    <option name="LAST_COMMIT_MESSAGE" value="我的页面地址相关接口提交1" />
+    <MESSAGE value="2026  5.14 12:07" />
+    <option name="LAST_COMMIT_MESSAGE" value="2026  5.14 12:07" />
   </component>
 </project>

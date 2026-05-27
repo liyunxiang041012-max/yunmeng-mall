@@ -28,7 +28,6 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     @Value("${jwt.secret}")
     private String secret;
 
-    // 搜索页已移出白名单，需要登录才能访问
     private static final List<String> WHITE_LIST = List.of(
             "/us/user/register",
             "/us/user/login",
@@ -38,7 +37,6 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
     private final ReactiveStringRedisTemplate redisTemplate;
 
-    // Redis key 前缀，与登录服务保持一致
     private static final String TOKEN_KEY_PREFIX = "user:token:";
 
     @PostConstruct
@@ -50,14 +48,17 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
                         () -> log.warn("测试Redis读取结果为空(empty)")
                 );
     }
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getPath().toString();
 
+        // 1. 白名单直接放行
         if (isWhitePath(path)) {
             return chain.filter(exchange);
         }
 
+        // 2. 获取并处理 Token
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
@@ -67,7 +68,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             return unauthorized(exchange);
         }
 
-        // 先用 JWT 解析，拿到 userId
+        // 3. 解析 JWT
         Claims claims;
         try {
             claims = JwtUtils.parseToken(token, secret);
@@ -80,28 +81,38 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         Integer role = claims.get("role", Integer.class);
         String redisKey = TOKEN_KEY_PREFIX + userId;
 
-        // 再去 Redis 验证 token 是否存在（响应式链式调用）
         String finalToken = token;
-        return redisTemplate.opsForValue().get(redisKey)
-                .flatMap(savedToken -> {
-                    // Redis 里的 token 和请求携带的 token 必须一致
-                    if (!savedToken.equals(finalToken)) {
+
+        // 👇 4. 核心修复：先校验 Token，返回 Boolean，避免 Mono<Void> 陷阱
+        Mono<Boolean> checkToken = redisTemplate.opsForValue().get(redisKey)
+                .map(savedToken -> {
+                    boolean isValid = savedToken.equals(finalToken);
+                    if (!isValid) {
                         log.warn("token 已失效或已在其他设备登录，userId={}", userId);
-                        return unauthorized(exchange);
                     }
-                    // 验证通过，写入下游请求头
-                    ServerHttpRequest mutatedRequest = exchange.getRequest().mutate()
-                            .header("user-id", String.valueOf(userId))
-                            .header("user-role", String.valueOf(role))
-                            .header("X-Real-IP", exchange.getRequest().getRemoteAddress().getAddress().getHostAddress()) // 加这行
-                            .build();
-                    return chain.filter(exchange.mutate().request(mutatedRequest).build());
+                    return isValid;
                 })
-                .switchIfEmpty(Mono.defer(() -> {
-                    // Redis 中不存在，说明未登录或已被踢下线
-                    log.debug("Redis 中无此 token，userId={}", userId);
-                    return unauthorized(exchange);
-                }));
+                .defaultIfEmpty(false); // 如果 Redis 没查到，默认返回 false
+
+        // 👇 5. 根据校验结果，决定是放行还是拦截
+        return checkToken.flatMap(isValid -> {
+            if (!isValid) {
+                log.debug("Redis 中无此 token 或校验失败，userId={}", userId);
+                return unauthorized(exchange);
+            }
+
+            // 验证通过，写入下游请求头
+            ServerHttpRequest mutatedRequest = exchange.getRequest().mutate()
+                    .header("user-id", String.valueOf(userId))
+                    .header("user-role", String.valueOf(role))
+                    // 获取真实 IP，兼容 IPv6 和未获取到的情况
+                    .header("X-Real-IP", exchange.getRequest().getRemoteAddress() != null ?
+                            exchange.getRequest().getRemoteAddress().getAddress().getHostAddress() : "unknown")
+                    .build();
+
+            // 放行请求
+            return chain.filter(exchange.mutate().request(mutatedRequest).build());
+        });
     }
 
     private boolean isWhitePath(String path) {
@@ -110,7 +121,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     private Mono<Void> unauthorized(ServerWebExchange exchange) {
         ServerHttpResponse response = exchange.getResponse();
-        response.setStatusCode(HttpStatus.UNAUTHORIZED);
+        response.setStatusCode(HttpStatus.UNAUTHORIZED); // 返回 401
         return response.setComplete();
     }
 
