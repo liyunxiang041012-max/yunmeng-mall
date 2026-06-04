@@ -17,6 +17,8 @@ import com.liyun.pay.service.ICartService;
 import com.liyun.pay.service.IOrderItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,6 +37,9 @@ public class PayServiceImpl extends ServiceImpl<PayMapper, Pay> implements IPayS
     private final IOrderService orderService;
     private final ICartService cartService;
     private final IOrderItemService orderItemService;
+    private final RedissonClient redissonClient;
+
+    private static final String PAY_LOCK_KEY = "lock:pay:success:";
 
     @Override
     @Transactional
@@ -130,47 +136,66 @@ public class PayServiceImpl extends ServiceImpl<PayMapper, Pay> implements IPayS
     @Transactional
     public void paySuccess(String payNo) {
         log.info("支付成功回调开始，payNo: {}", payNo);
-        
-        // 1. 查询支付记录
-        Pay pay = this.getOne(new LambdaQueryWrapper<Pay>()
-                .eq(Pay::getPayNo, payNo));
-        if (pay == null) {
-            throw new BizException(ResultCode.NOT_FOUND, "支付记录不存在");
-        }
-        if (pay.getStatus() != PayStatus.PENDING) {
-            throw new BizException(ResultCode.FAIL, "该支付单已处理");
-        }
 
-        log.info("找到支付记录，orderId: {}, userId: {}", pay.getOrderId(), pay.getUserId());
+        // 分布式锁：防止重复回调
+        String lockKey = PAY_LOCK_KEY + payNo;
+        RLock lock = redissonClient.getLock(lockKey);
+        try {
+            boolean isLocked = lock.tryLock(5, 15, TimeUnit.SECONDS);
+            if (!isLocked) {
+                log.warn("支付回调获取锁失败，可能重复回调，payNo: {}", payNo);
+                return;
+            }
+            try {
+                // 1. 查询支付记录
+                Pay pay = this.getOne(new LambdaQueryWrapper<Pay>()
+                        .eq(Pay::getPayNo, payNo));
+                if (pay == null) {
+                    throw new BizException(ResultCode.NOT_FOUND, "支付记录不存在");
+                }
+                if (pay.getStatus() != PayStatus.PENDING) {
+                    log.info("该支付单已处理，payNo: {}, status: {}", payNo, pay.getStatus());
+                    return;
+                }
 
-        // 2. 更新支付状态为已支付
-        pay.setStatus(PayStatus.PAID);
-        pay.setPayTime(LocalDateTime.now());
-        pay.setUpdateTime(LocalDateTime.now());
-        this.updateById(pay);
+                log.info("找到支付记录，orderId: {}, userId: {}", pay.getOrderId(), pay.getUserId());
 
-        // 3. 更新订单状态为已支付
-        orderService.updateOrderStatus(pay.getOrderId(), 1);
-        log.info("订单状态已更新为已支付");
+                // 2. 更新支付状态为已支付
+                pay.setStatus(PayStatus.PAID);
+                pay.setPayTime(LocalDateTime.now());
+                pay.setUpdateTime(LocalDateTime.now());
+                this.updateById(pay);
 
-        // 4. 查询订单项，获取已购买的skuId列表
-        List<OrderItem> orderItems = orderItemService.list(new LambdaQueryWrapper<OrderItem>()
-                .eq(OrderItem::getOrderId, pay.getOrderId()));
-        
-        log.info("查询到订单项数量: {}", orderItems != null ? orderItems.size() : 0);
-        
-        if (orderItems != null && !orderItems.isEmpty()) {
-            // 5. 提取skuId列表
-            List<Long> skuIds = orderItems.stream()
-                    .map(OrderItem::getSkuId)
-                    .collect(Collectors.toList());
-            
-            log.info("准备清理购物车，skuIds: {}", skuIds);
-            
-            // 6. 清理购物车中已购买的商品
-            cartService.deleteCartBySkuIds(skuIds);
-            
-            log.info("购物车清理完成");
+                // 3. 更新订单状态为已支付
+                orderService.updateOrderStatus(pay.getOrderId(), 1);
+                log.info("订单状态已更新为已支付");
+
+                // 4. 查询订单项，获取已购买的skuId列表
+                List<OrderItem> orderItems = orderItemService.list(new LambdaQueryWrapper<OrderItem>()
+                        .eq(OrderItem::getOrderId, pay.getOrderId()));
+
+                log.info("查询到订单项数量: {}", orderItems != null ? orderItems.size() : 0);
+
+                if (orderItems != null && !orderItems.isEmpty()) {
+                    // 5. 提取skuId列表
+                    List<Long> skuIds = orderItems.stream()
+                            .map(OrderItem::getSkuId)
+                            .collect(Collectors.toList());
+
+                    log.info("准备清理购物车，skuIds: {}", skuIds);
+
+                    // 6. 清理购物车中已购买的商品
+                    cartService.deleteCartBySkuIds(skuIds);
+
+                    log.info("购物车清理完成");
+                }
+            } finally {
+                lock.unlock();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.error("支付回调获取锁被中断，payNo: {}", payNo, e);
+            throw new BizException(ResultCode.FAIL, "系统繁忙，请稍后再试");
         }
     }
 

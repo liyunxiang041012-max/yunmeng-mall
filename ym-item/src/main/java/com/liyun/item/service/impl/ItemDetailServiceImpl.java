@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.liyun.common.context.UserContext;
 import com.liyun.item.domain.pojo.Item;
 import com.liyun.item.domain.pojo.ItemDetail;
 import com.liyun.item.domain.pojo.ItemSku;
@@ -14,6 +15,7 @@ import com.liyun.item.domain.vo.ItemDetailVO.SpecValueVO;
 import com.liyun.item.mapper.ItemDetailMapper;
 import com.liyun.item.mapper.ItemMapper;
 import com.liyun.item.mapper.ItemSkuMapper;
+import com.liyun.item.service.IHistoryService;
 import com.liyun.item.service.IItemDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,12 +32,23 @@ public class ItemDetailServiceImpl extends ServiceImpl<ItemDetailMapper, ItemDet
     private final ItemSkuMapper itemSkuMapper;
     private final ItemDetailMapper itemDetailMapper;
     private final ObjectMapper objectMapper;
+    private final IHistoryService historyService;
 
     @Override
     public ItemDetailVO getItemDetail(Long itemId) {
         // 1. 查商品主表
         Item item = itemMapper.selectById(itemId);
         if (item == null) throw new RuntimeException("商品不存在");
+
+        // 记录浏览历史（异步，不阻塞主流程）
+        try {
+            Long userId = UserContext.getUserId();
+            if (userId != null) {
+                historyService.addHistory(userId, itemId);
+            }
+        } catch (Exception e) {
+            // 记录日志但不影响主流程
+        }
 
         // 2. 查 SKU 列表
         List<ItemSku> skus = itemSkuMapper.selectList(
@@ -54,6 +67,7 @@ public class ItemDetailServiceImpl extends ServiceImpl<ItemDetailMapper, ItemDet
         // 4. 组装主信息
         ItemDetailVO vo = new ItemDetailVO();
         vo.setId(item.getId());
+        vo.setShopId(item.getShopId());
         vo.setName(item.getName());
         vo.setSold(item.getSold());
         vo.setMainImage(item.getImage());

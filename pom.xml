@@ -19,9 +19,15 @@
 
     <modules>
         <module>ym-common</module>
+        <module>ym-api</module>
         <module>ym-gateway</module>
         <module>ym-user</module>
         <module>ym-auth</module>
+        <module>ym-promotion</module>
+        <module>ym-remark</module>
+        <module>ym-item</module>
+        <module>ym-pay</module>
+        <module>yunmeng-ai</module>
     </modules>
 
     <properties>

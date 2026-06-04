@@ -14,9 +14,13 @@ public class ItemPageQuery extends PageQuery {
 
     private Long brandId;
 
+    private Long shopId;
+
     private Long minPrice;
 
     private Long maxPrice;
 
     private Boolean inStock;
+
+    private String sort;
 }

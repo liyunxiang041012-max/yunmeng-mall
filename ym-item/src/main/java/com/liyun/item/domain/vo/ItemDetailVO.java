@@ -7,6 +7,7 @@ import java.util.Map;
 @Data
 public class ItemDetailVO {
     private Long id;
+    private Long shopId;
     private String name;
     private Long price;
     private Long originalPrice;

@@ -2,9 +2,15 @@ package com.liyun.item.controller;
 
 
 import com.liyun.api.dto.ShopInfoDTO;
+import com.liyun.common.context.UserContext;
+import com.liyun.common.utils.PageDTO;
 import com.liyun.common.utils.Result;
 import com.liyun.item.domain.dto.ShopDTO;
+import com.liyun.item.domain.vo.FollowShopVO;
+import com.liyun.item.domain.vo.ItemVO;
 import com.liyun.item.domain.vo.ShopCartVO;
+import com.liyun.item.domain.vo.ShopDetailVO;
+import com.liyun.item.service.IShopFollowService;
 import com.liyun.item.service.IShopService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,6 +28,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ShopController {
     private final IShopService shopService;
+    private final IShopFollowService shopFollowService;
 
     @Operation(summary = "添加商家")
     @PostMapping("/register")
@@ -60,6 +67,45 @@ public class ShopController {
     @PostMapping("/batch-detail")
     public List<ShopInfoDTO> batchGetShopInfo(@RequestBody List<Long> shopIds) {
         return shopService.batchGetShopInfo(shopIds);
+    }
+
+    @Operation(summary = "获取店铺详情")
+    @GetMapping("/{shopId}")
+    public Result<ShopDetailVO> getShopDetail(@PathVariable Long shopId) {
+        return Result.success(shopService.getShopDetail(shopId));
+    }
+
+    @Operation(summary = "获取店铺商品列表")
+    @GetMapping("/{shopId}/items")
+    public Result<PageDTO<ItemVO>> getShopItems(
+            @PathVariable Long shopId,
+            @RequestParam(required = false, defaultValue = "default") String sort,
+            @RequestParam(required = false, defaultValue = "1") Integer page,
+            @RequestParam(required = false, defaultValue = "20") Integer size) {
+        return Result.success(shopService.getShopItems(shopId, sort, page, size));
+    }
+
+    @Operation(summary = "切换关注店铺")
+    @PostMapping("/follow/toggle/{shopId}")
+    public Result<Boolean> toggleFollow(@PathVariable Long shopId) {
+        Long userId = UserContext.getUserId();
+        boolean followed = shopFollowService.toggleFollow(userId, shopId);
+        return Result.success(followed);
+    }
+
+    @Operation(summary = "检查关注状态")
+    @GetMapping("/follow/check/{shopId}")
+    public Result<Boolean> checkFollow(@PathVariable Long shopId) {
+        Long userId = UserContext.getUserId();
+        boolean followed = shopFollowService.checkFollow(userId, shopId);
+        return Result.success(followed);
+    }
+
+    @Operation(summary = "获取我的关注列表")
+    @GetMapping("/follow/my")
+    public Result<List<FollowShopVO>> getMyFollows() {
+        Long userId = UserContext.getUserId();
+        return Result.success(shopFollowService.getMyFollows(userId));
     }
 
 

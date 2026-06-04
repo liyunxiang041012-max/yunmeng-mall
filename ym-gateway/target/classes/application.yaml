@@ -37,6 +37,24 @@ spring:
             - Path=/py/**
           filters:
             - PreserveHostHeader
+        - id: ym-promotion
+          uri: lb://ym-promotion
+          predicates:
+            - Path=/pm/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-remark
+          uri: lb://ym-remark
+          predicates:
+            - Path=/rm/**
+          filters:
+            - PreserveHostHeader
+        - id: yunmeng-ai
+          uri: lb://yunmeng-ai
+          predicates:
+            - Path=/ai/**
+          filters:
+            - PreserveHostHeader
 
       default-filters:
         - StripPrefix=1

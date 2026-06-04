@@ -40,4 +40,9 @@ public interface IOrderService extends IService<Order> {
      * 更新订单状态
      */
     void updateOrderStatus(String orderId, Integer status);
+
+    /**
+     * 扫描超时未支付订单并取消
+     */
+    void handleTimeoutOrders();
 }

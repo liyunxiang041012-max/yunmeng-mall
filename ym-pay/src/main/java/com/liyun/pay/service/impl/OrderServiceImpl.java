@@ -14,6 +14,7 @@ import com.liyun.pay.mapper.OrderMapper;
 import com.liyun.pay.service.IOrderItemService;
 import com.liyun.pay.service.IOrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,10 +35,14 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
 
     private final ItemFeign itemFeign;
     private final IOrderItemService orderItemService;
+
+    /** 订单超时时间：30分钟 */
+    private static final int ORDER_TIMEOUT_MINUTES = 30;
     @Override
     @Transactional
     public String createOrder(OrderDTO dto) {
@@ -196,5 +201,28 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             order.setPayTime(LocalDateTime.now());
         }
         updateById(order);
+    }
+
+    @Override
+    @Transactional
+    public void handleTimeoutOrders() {
+        LocalDateTime timeoutPoint = LocalDateTime.now().minusMinutes(ORDER_TIMEOUT_MINUTES);
+        List<Order> timeoutOrders = lambdaQuery()
+                .eq(Order::getStatus, OrderStatus.PENDING_PAYMENT)
+                .le(Order::getCreateTime, timeoutPoint)
+                .list();
+
+        if (timeoutOrders.isEmpty()) {
+            log.debug("没有超时未支付的订单");
+            return;
+        }
+
+        log.info("扫描到 {} 个超时未支付订单，开始批量取消", timeoutOrders.size());
+        for (Order order : timeoutOrders) {
+            order.setStatus(OrderStatus.CANCELLED);
+            order.setUpdateTime(LocalDateTime.now());
+        }
+        updateBatchById(timeoutOrders);
+        log.info("批量取消超时订单完成，共 {} 个", timeoutOrders.size());
     }
 }

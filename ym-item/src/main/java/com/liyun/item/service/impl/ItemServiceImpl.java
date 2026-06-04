@@ -162,6 +162,13 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements II
             ));
         }
 
+        // 店铺过滤
+        if (query.getShopId() != null) {
+            filters.add(Query.of(q -> q
+                    .term(t -> t.field("shopId").value(query.getShopId()))
+            ));
+        }
+
         // 有货过滤
         if (Boolean.TRUE.equals(query.getInStock())) {
             filters.add(Query.of(q -> q

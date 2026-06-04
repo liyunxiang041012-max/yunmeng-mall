@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @FeignClient(name = "ym-item", contextId = "itemFeign")
 public interface ItemFeign {
@@ -29,4 +30,8 @@ public interface ItemFeign {
 
     @PostMapping("/sku/deduct-stock")
     void deductStock(@RequestParam("skuId") Long skuId, @RequestParam("quantity") Integer quantity);
+
+    /** 商品搜索 */
+    @GetMapping("/items/page")
+    Map<String, Object> searchItems(@RequestParam("keyword") String keyword);
 }
