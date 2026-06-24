@@ -1,0 +1,75 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  cloud:
+    nacos:
+      discovery:
+        group: DEFAULT_GROUP
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: ym-user
+          uri: lb://ym-user
+          predicates:
+            - Path=/us/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-item
+          uri: lb://ym-item
+          predicates:
+            - Path=/it/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-pay-cart
+          uri: lb://ym-pay
+          predicates:
+            - Path=/ca/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-pay
+          uri: lb://ym-pay
+          predicates:
+            - Path=/py/**
+          filters:
+            - PreserveHostHeader
+        - id: yunmeng-ai
+          uri: lb://yunmeng-ai
+          predicates:
+            - Path=/ai/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-promotion
+          uri: lb://ym-promotion
+          predicates:
+            - Path=/pm/**
+          filters:
+            - PreserveHostHeader
+        - id: ym-remark
+          uri: lb://ym-remark
+          predicates:
+            - Path=/rm/**
+          filters:
+            - PreserveHostHeader
+
+      default-filters:
+        - StripPrefix=1
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "*"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 360000

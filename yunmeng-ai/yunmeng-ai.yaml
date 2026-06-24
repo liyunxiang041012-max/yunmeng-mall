@@ -1,0 +1,29 @@
+# ========================
+# Nacos 配置: yunmeng-ai.yaml
+# ========================
+
+# AI 服务对话历史存在 Redis，无需 MySQL
+# 如需后续功能扩展再放开以下配置
+# spring:
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     url: jdbc:mysql://192.168.150.101:3306/ym_ai?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+#     username: root
+#     password: 123456
+# mybatis-plus:
+#   ...
+
+# ========================
+# DeepSeek V4 Pro 配置（需要你填写 api-key）
+# ========================
+deepseek:
+  api-key: sk-980739461dab46e7bd9cb8810d943acf
+  base-url: https://api.deepseek.com
+  model: deepseek-chat
+  timeout: 30
+  temperature: 0.7
+  max-tokens: 1000
+
+logging:
+  level:
+    com.liyun.ai: debug

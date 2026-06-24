@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: yunmeng-ai
+  cloud:
+    nacos:
+      server-addr: 192.168.150.101:8848
+      discovery:
+        group: DEFAULT_GROUP
+      config:
+        file-extension: yaml
+        shared-configs:
+          - data-id: shared-redis.yaml
+            refresh: false
+          - data-id: shared-logs.yaml
+            refresh: false
+          - data-id: yunmeng-ai.yaml
+            refresh: false
+          - data-id: shared-mq.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: shared-xxljob.yaml
+            refresh: true
+
+server:
+  port: 8095
+
+xxl:
+  job:
+    executor:
+      appname: ym-ai-executor
+      port: 9995
+      logpath: /data/applogs/xxl-job/yunmeng-ai
+      logretentiondays: 30

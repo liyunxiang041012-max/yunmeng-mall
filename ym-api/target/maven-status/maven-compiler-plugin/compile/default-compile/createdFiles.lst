@@ -1,0 +1,8 @@
+com\liyun\api\dto\RegisterShopDTO.class
+com\liyun\api\dto\ItemInfoDTO.class
+com\liyun\api\vo\ShopCartVO.class
+com\liyun\api\dto\SkuInfoDTO.class
+com\liyun\api\client\UserFeign.class
+com\liyun\api\client\ItemFeign.class
+com\liyun\api\client\ShopFeign.class
+com\liyun\api\dto\ShopInfoDTO.class

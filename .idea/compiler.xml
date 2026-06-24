@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ym-item" />
+        <module name="ym-api" />
+        <module name="ym-remark" />
+        <module name="ym-gateway" />
+        <module name="ym-common" />
+        <module name="ym-user" />
+        <module name="ym-promotion" />
+        <module name="ym-auth" />
+        <module name="yunmeng-ai" />
+        <module name="ym-pay" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ym-api" options="-parameters" />
+      <module name="ym-auth" options="-parameters" />
+      <module name="ym-common" options="-parameters" />
+      <module name="ym-gateway" options="-parameters" />
+      <module name="ym-item" options="-parameters" />
+      <module name="ym-pay" options="-parameters" />
+      <module name="ym-promotion" options="-parameters" />
+      <module name="ym-remark" options="-parameters" />
+      <module name="ym-user" options="-parameters" />
+      <module name="yunmeng-ai" options="-parameters" />
+    </option>
+  </component>
+</project>
