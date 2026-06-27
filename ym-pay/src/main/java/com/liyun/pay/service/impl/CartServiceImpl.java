@@ -12,25 +12,42 @@ import com.liyun.pay.domain.pojo.Cart;
 import com.liyun.pay.domain.vo.CartVO;
 import com.liyun.pay.mapper.CartMapper;
 import com.liyun.pay.service.ICartService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements ICartService {
 
     private final ItemFeign itemFeign;
     private final ShopFeign shopFeign;
+    private final ObjectMapper objectMapper;
+
+    @SuppressWarnings("unchecked")
+    private <T> T extractData(Map<String, Object> result, Class<T> clazz) {
+        Object data = result.get("data");
+        if (data == null) return null;
+        return objectMapper.convertValue(data, clazz);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> List<T> extractDataList(Map<String, Object> result, Class<T> clazz) {
+        Object data = result.get("data");
+        if (!(data instanceof List)) return Collections.emptyList();
+        return ((List<Object>) data).stream()
+                .map(item -> objectMapper.convertValue(item, clazz))
+                .collect(Collectors.toList());
+    }
 
     private Long getCurrentUserId() {
         Long userId = UserContext.getUserId();
@@ -46,7 +63,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         Long userId = getCurrentUserId();
         Long skuId = dto.getSkuId();
 
-        SkuInfoDTO sku = itemFeign.getSkuInfo(skuId);
+        SkuInfoDTO sku = extractData(itemFeign.getSkuInfo(skuId), SkuInfoDTO.class);
         if (sku == null) {
             throw new RuntimeException("商品不存在");
         }
@@ -80,7 +97,9 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
     @Override
     public List<CartVO> cartList() {
         Long userId = getCurrentUserId();
-        List<Cart> carts = this.list(new LambdaQueryWrapper<Cart>().eq(Cart::getUserId, userId));
+        List<Cart> carts = this.list(new LambdaQueryWrapper<Cart>()
+                .eq(Cart::getUserId, userId)
+                .gt(Cart::getQuantity, 0));
 
         if (carts.isEmpty()) {
             return Collections.emptyList();
@@ -91,7 +110,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
 
         // 两个Feign并行调用
         CompletableFuture<Map<Long, SkuInfoDTO>> skuFuture = CompletableFuture.supplyAsync(() -> {
-            List<SkuInfoDTO> list = itemFeign.batchGetSkuInfo(skuIds);
+            List<SkuInfoDTO> list = extractDataList(itemFeign.batchGetSkuInfo(skuIds), SkuInfoDTO.class);
             if (list != null) {
                 return list.stream()
                         .collect(Collectors.toMap(SkuInfoDTO::getId, Function.identity()));
@@ -100,7 +119,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         });
 
         CompletableFuture<Map<Long, ShopCartVO>> shopFuture = CompletableFuture.supplyAsync(() -> {
-            List<ShopCartVO> list = shopFeign.batchGetShop(shopIds);
+            List<ShopCartVO> list = extractDataList(shopFeign.batchGetShop(shopIds), ShopCartVO.class);
             if (list != null) {
                 return list.stream()
                         .collect(Collectors.toMap(ShopCartVO::getId, Function.identity()));
@@ -198,5 +217,29 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         this.remove(new LambdaQueryWrapper<Cart>()
                 .eq(Cart::getUserId, userId)
                 .in(Cart::getId, ids));
+    }
+
+    @Override
+    @Transactional
+    public void reduceCartAfterOrder(Long userId, Map<Long, Integer> skuQuantityMap) {
+        if (skuQuantityMap == null || skuQuantityMap.isEmpty()) return;
+
+        List<Long> skuIds = new ArrayList<>(skuQuantityMap.keySet());
+        List<Cart> cartItems = this.list(new LambdaQueryWrapper<Cart>()
+                .eq(Cart::getUserId, userId)
+                .in(Cart::getSkuId, skuIds));
+
+        if (cartItems.isEmpty()) return;
+
+        for (Cart cart : cartItems) {
+            int orderedQty = skuQuantityMap.getOrDefault(cart.getSkuId(), 0);
+            int remaining = Math.max(0, cart.getQuantity() - orderedQty);
+            log.info("【购物车清除】skuId={}, 原数量={}, 购买={}, 剩余={}",
+                    cart.getSkuId(), cart.getQuantity(), orderedQty, remaining);
+            cart.setQuantity(remaining);
+            cart.setUpdateTime(LocalDateTime.now());
+        }
+        this.updateBatchById(cartItems);
+        log.info("【购物车清除】扣减 {} 个商品: userId={}, skuIds={}", cartItems.size(), userId, skuIds);
     }
 }

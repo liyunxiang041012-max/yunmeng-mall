@@ -13,15 +13,18 @@ public class OrderJobHandler {
 
     private final IOrderService orderService;
 
-    /** 扫描超时未支付订单并自动取消 */
+    /** 扫描超时未支付订单并自动删除 */
     @XxlJob("orderTimeoutCancel")
     public void handleTimeoutOrders() {
-        log.info("开始扫描超时未支付订单");
+        log.info("========================================");
+        log.info("【订单清除】XXL-JOB 触发，开始扫描超时订单...");
+        long start = System.currentTimeMillis();
         try {
             orderService.handleTimeoutOrders();
-            log.info("超时订单扫描完成");
+            log.info("【订单清除】扫描完成，耗时: {} ms", System.currentTimeMillis() - start);
         } catch (Exception e) {
-            log.error("超时订单扫描失败", e);
+            log.error("【订单清除】扫描失败", e);
         }
+        log.info("========================================");
     }
 }

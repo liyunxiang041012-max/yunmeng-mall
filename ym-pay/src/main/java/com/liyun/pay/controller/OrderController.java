@@ -12,11 +12,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/order")
 @Tag(name = "订单管理", description = "订单相关接口")
@@ -104,5 +106,33 @@ public class OrderController {
             @RequestParam String trackingNo) {
         orderService.shipOrder(orderId, trackingNo);
         return Result.success();
+    }
+
+    // ==================== 管理员端 ====================
+
+    @Operation(summary = "管理员 - 平台订单统计（总订单数、总GMV）")
+    @GetMapping("/admin-stats")
+    public Result<Map<String, Object>> adminStats() {
+        return Result.success(orderService.getAdminStats());
+    }
+
+    @Operation(summary = "管理员 - 最近订单列表")
+    @GetMapping("/admin-recent")
+    public List<Map<String, Object>> adminRecentOrders() {
+        log.info("[ADMIN-CTRL] admin-recent called");
+        return orderService.getAdminRecentOrders();
+    }
+
+    @Operation(summary = "管理员 - 热销商品排行")
+    @GetMapping("/admin-top-products")
+    public List<Map<String, Object>> adminTopProducts() {
+        log.info("[ADMIN-CTRL] admin-top-products called");
+        return orderService.getAdminTopProducts();
+    }
+
+    @Operation(summary = "管理员 - 平台收入趋势")
+    @GetMapping("/admin-revenue")
+    public Result<Map<String, Object>> adminRevenue(@RequestParam(defaultValue = "7") int period) {
+        return Result.success(orderService.getAdminRevenue(period));
     }
 }

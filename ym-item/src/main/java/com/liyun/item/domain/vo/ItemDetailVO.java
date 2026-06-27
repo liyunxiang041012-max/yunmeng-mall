@@ -41,6 +41,6 @@ public class ItemDetailVO {
     @Data
     public static class SpecValueVO {
         private String value;
-        private boolean stock;
+        private Integer stock;
     }
 }

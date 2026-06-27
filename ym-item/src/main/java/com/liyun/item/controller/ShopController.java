@@ -59,33 +59,33 @@ public class ShopController {
 
     @Operation(summary = "获取商家信息")
     @GetMapping("/cart/{id}")
-    public ShopCartVO getShop(@PathVariable Long id) {
-        return shopService.getCartShopInfo(id);
+    public Result<ShopCartVO> getShop(@PathVariable Long id) {
+        return Result.success(shopService.getCartShopInfo(id));
     }
 
     @Operation(summary = "批量获取商家信息")
     @PostMapping("/batch-info")
-    public List<ShopCartVO> batchGetShop(@RequestBody List<Long> shopIds) {
+    public Result<List<ShopCartVO>> batchGetShop(@RequestBody List<Long> shopIds) {
         if (shopIds == null || shopIds.isEmpty()) {
-            return Collections.emptyList();
+            return Result.success(Collections.emptyList());
         }
-        return shopService.batchGetCartShopInfo(shopIds);
+        return Result.success(shopService.batchGetCartShopInfo(shopIds));
     }
 
     @Operation(summary = "获取商家详细信息")
     @GetMapping("/info/{shopId}")
-    public ShopInfoDTO getShopInfo(@PathVariable("shopId") Long shopId) {
+    public Result<ShopInfoDTO> getShopInfo(@PathVariable("shopId") Long shopId) {
         ShopInfoDTO dto = shopService.getShopInfo(shopId);
         if (dto == null) {
-            throw new RuntimeException("店铺不存在");
+            return Result.fail("店铺不存在");
         }
-        return dto;
+        return Result.success(dto);
     }
 
     @Operation(summary = "批量获取商家详细信息")
     @PostMapping("/batch-detail")
-    public List<ShopInfoDTO> batchGetShopInfo(@RequestBody List<Long> shopIds) {
-        return shopService.batchGetShopInfo(shopIds);
+    public Result<List<ShopInfoDTO>> batchGetShopInfo(@RequestBody List<Long> shopIds) {
+        return Result.success(shopService.batchGetShopInfo(shopIds));
     }
 
     @Operation(summary = "上传店铺头像")
@@ -134,8 +134,12 @@ public class ShopController {
     @PutMapping("/orders/{orderId}/ship")
     public Result<Void> shipOrder(
             @PathVariable String orderId,
-            @RequestParam String trackingNo) {
+            @RequestBody Map<String, String> body) {
         checkShopRole();
+        String trackingNo = body.get("trackingNo");
+        if (trackingNo == null || trackingNo.isEmpty()) {
+            return Result.fail("物流单号不能为空");
+        }
         orderFeign.shipOrder(orderId, trackingNo);
         return Result.success();
     }

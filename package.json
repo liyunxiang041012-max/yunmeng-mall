@@ -1,0 +1,23 @@
+{
+  "name": "yunmeng-mall-main",
+  "version": "1.0.0",
+  "description": "> **云梦商城** — 基于 Spring Cloud 微服务架构的电商后端系统",
+  "main": "gen_docx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liyunxiang041012-max/yunmeng-mall.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liyunxiang041012-max/yunmeng-mall/issues"
+  },
+  "homepage": "https://github.com/liyunxiang041012-max/yunmeng-mall#readme",
+  "dependencies": {
+    "docx": "^9.7.1"
+  }
+}

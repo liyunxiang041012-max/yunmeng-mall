@@ -37,7 +37,9 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             "/us/user/shop/login",
             "/us/user/admin/login",
             "/us/user/sendCode",
-            "/it/shop/register"
+            "/it/shop/register",
+            "/*.json",           // JSON 配置文件
+            "/**/*.json"         // 子目录下的 JSON 文件
     );
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
@@ -59,12 +61,23 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getPath().toString();
 
+        // 调试日志：打印所有请求路径（临时）
+        if (path.contains("json")) {
+            log.debug("检测到包含json的请求路径: {}", path);
+        }
+
         // 1. 白名单直接放行
         if (isWhitePath(path)) {
             return chain.filter(exchange);
         }
 
-        // 2. 获取并处理 Token
+        // 2. 静默忽略静态资源请求（不记录日志）
+        if (isStaticResource(path)) {
+            log.debug("静默放行静态资源: {}", path);
+            return chain.filter(exchange);
+        }
+
+        // 3. 获取并处理 Token
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
@@ -74,7 +87,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             return unauthorized(exchange);
         }
 
-        // 3. 解析 JWT
+        // 4. 解析 JWT
         Claims claims;
         try {
             claims = JwtUtils.parseToken(token, secret);
@@ -89,7 +102,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
         String finalToken = token;
 
-        // 👇 4. 核心修复：先校验 Token，返回 Boolean，避免 Mono<Void> 陷阱
+        // 👇 5. 核心修复：先校验 Token，返回 Boolean，避免 Mono<Void> 陷阱
         Mono<Boolean> checkToken = redisTemplate.opsForValue().get(redisKey)
                 .map(savedToken -> {
                     boolean isValid = savedToken.equals(finalToken);
@@ -100,7 +113,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
                 })
                 .defaultIfEmpty(false); // 如果 Redis 没查到，默认返回 false
 
-        // 👇 5. 根据校验结果，决定是放行还是拦截
+        // 👇 6. 根据校验结果，决定是放行还是拦截
         return checkToken.flatMap(isValid -> {
             if (!isValid) {
                 log.debug("Redis 中无此 token 或校验失败，userId={}", userId);
@@ -123,6 +136,22 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     private boolean isWhitePath(String path) {
         return WHITE_LIST.stream().anyMatch(p -> pathMatcher.match(p, path));
+    }
+
+    /**
+     * 判断是否为静态资源请求（静默处理，不记录日志）
+     */
+    private boolean isStaticResource(String path) {
+        // 忽略常见的静态资源后缀
+        return path.endsWith(".json") || 
+               path.endsWith(".ico") || 
+               path.endsWith(".png") || 
+               path.endsWith(".jpg") || 
+               path.endsWith(".gif") || 
+               path.endsWith(".css") || 
+               path.endsWith(".js") ||
+               path.equals("/favicon.ico") ||
+               path.equals("/json");  // 特别处理 /json 路径
     }
 
     private Mono<Void> unauthorized(ServerWebExchange exchange) {

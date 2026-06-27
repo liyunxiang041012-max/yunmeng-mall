@@ -15,6 +15,6 @@ xxl:
     accessToken: default_token
     executor:
       appname: ym-pay
-      port: 9999
+      port: 9995
       logpath: /data/applogs/xxl-job/ym-pay
       logretentiondays: 30

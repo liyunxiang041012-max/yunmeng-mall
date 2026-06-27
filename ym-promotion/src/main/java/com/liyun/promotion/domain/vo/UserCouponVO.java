@@ -1,5 +1,7 @@
 package com.liyun.promotion.domain.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.liyun.promotion.enums.DiscountType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 public class UserCouponVO {
 
     @Schema(description = "优惠券id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @Schema(description = "优惠券名称")

@@ -1,6 +1,7 @@
 package com.liyun.promotion.controller;
 
 import com.liyun.common.utils.PageDTO;
+import com.liyun.common.utils.Result;
 import com.liyun.promotion.domain.vo.ExchangeCodeVO;
 import com.liyun.promotion.query.CodeQuery;
 import com.liyun.promotion.service.IExchangeCodeService;
@@ -19,7 +20,7 @@ public class ExchangeCodeController {
 
     @GetMapping("/page")
     @Operation(summary = "分页查询兑换码")
-    public PageDTO<ExchangeCodeVO> pageQueryCode(CodeQuery query) {
-        return codeService.pageQueryCode(query);
+    public Result<PageDTO<ExchangeCodeVO>> pageQueryCode(CodeQuery query) {
+        return Result.success(codeService.pageQueryCode(query));
     }
 }

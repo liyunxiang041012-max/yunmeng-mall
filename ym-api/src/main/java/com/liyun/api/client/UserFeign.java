@@ -13,7 +13,7 @@ import java.util.Map;
 public interface UserFeign {
 
     @PostMapping("/user/shop/register")
-    Long registerShop(@RequestBody RegisterShopDTO registerDTO);
+    Map<String, Object> registerShop(@RequestBody RegisterShopDTO registerDTO);
 
     /** 按ID获取用户信息 */
     @GetMapping("/user/info/{id}")

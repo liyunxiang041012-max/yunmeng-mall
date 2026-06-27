@@ -52,4 +52,20 @@ public interface OrderFeign {
     Map<String, Object> shipOrder(
             @PathVariable("orderId") String orderId,
             @RequestParam("trackingNo") String trackingNo);
+
+    /** 管理员 - 平台订单统计 */
+    @GetMapping("/order/admin-stats")
+    Map<String, Object> getAdminStats();
+
+    /** 管理员 - 最近订单 */
+    @GetMapping("/order/admin-recent")
+    List<Map<String, Object>> getAdminRecentOrders();
+
+    /** 管理员 - 热销商品排行 */
+    @GetMapping("/order/admin-top-products")
+    List<Map<String, Object>> getAdminTopProducts();
+
+    /** 管理员 - 收入趋势 */
+    @GetMapping("/order/admin-revenue")
+    Map<String, Object> getAdminRevenue(@RequestParam("period") int period);
 }

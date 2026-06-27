@@ -19,4 +19,10 @@ public interface IUserCouponService extends IService<UserCoupon> {
 
     /** 扫描并标记过期用户券 */
     void handleExpiredCoupons();
+
+    /** 使用优惠券（支付时调用） */
+    UserCoupon useCoupon(Long userCouponId, Long orderAmount);
+
+    /** 根据用户券ID查询优惠券规则 */
+    Coupon getCouponByUserCouponId(Long userCouponId);
 }

@@ -107,14 +107,14 @@ public class ItemDetailServiceImpl extends ServiceImpl<ItemDetailMapper, ItemDet
      * 输出：[{specName:颜色, values:[{value:黑色,stock:true}, ...]}, ...]
      */
     private List<SpecGroupVO> buildSpecGroups(List<SkuVO> skuVOs) {
-        LinkedHashMap<String, LinkedHashMap<String, Boolean>> groupMap = new LinkedHashMap<>();
+        LinkedHashMap<String, LinkedHashMap<String, Integer>> groupMap = new LinkedHashMap<>();
 
         for (SkuVO sku : skuVOs) {
-            boolean hasStock = sku.getStock() != null && sku.getStock() > 0;
+            int skuStock = sku.getStock() != null ? sku.getStock() : 0;
             for (Map.Entry<String, String> entry : sku.getSpecData().entrySet()) {
                 groupMap
                         .computeIfAbsent(entry.getKey(), k -> new LinkedHashMap<>())
-                        .merge(entry.getValue(), hasStock, Boolean::logicalOr);
+                        .merge(entry.getValue(), skuStock, Integer::sum);
             }
         }
 

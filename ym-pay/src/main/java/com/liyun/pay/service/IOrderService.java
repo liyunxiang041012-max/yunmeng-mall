@@ -73,4 +73,16 @@ public interface IOrderService extends IService<Order> {
      * 发货
      */
     void shipOrder(String orderId, String trackingNo);
+
+    /** 管理员 - 平台订单统计 */
+    Map<String, Object> getAdminStats();
+
+    /** 管理员 - 最近订单 */
+    List<Map<String, Object>> getAdminRecentOrders();
+
+    /** 管理员 - 热销商品排行 */
+    List<Map<String, Object>> getAdminTopProducts();
+
+    /** 管理员 - 平台收入趋势 */
+    Map<String, Object> getAdminRevenue(int period);
 }

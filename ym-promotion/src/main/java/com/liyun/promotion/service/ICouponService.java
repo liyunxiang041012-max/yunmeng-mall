@@ -33,4 +33,7 @@ public interface ICouponService extends IService<Coupon> {
     void pauseIssue(Long id);
 
     List<CouponVO> queryIssuingCoupon();
+
+    /** 定时删除已结束的优惠券及其关联数据 */
+    void deleteFinishedCoupons();
 }

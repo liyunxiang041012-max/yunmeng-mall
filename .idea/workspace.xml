@@ -5,6 +5,130 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e587ff6f-8d30-4971-a61b-427fab3c1406" name="更改" comment="2026  5.14 12:07">
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/12148" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/12176" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/20588" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/20784" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/23744" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/25936" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/hsperfdata_Administrator/28144" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/%USERP~1/AppData/Local/Temp/jansi-2.4.1-59330141f3aaeeaf-jansi.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/ItemFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/ItemFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/OrderFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/OrderFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/PromotionFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/PromotionFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/ShopFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/ShopFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/UserFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/src/main/java/com/liyun/api/client/UserFeign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/ItemFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/ItemFeign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/OrderFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/OrderFeign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/PromotionFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/PromotionFeign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/ShopFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/ShopFeign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/UserFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/classes/com/liyun/api/client/UserFeign.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ym-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-auth/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-auth/target/classes/com/liyun/yunmengauth/YunmengAuthApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-auth/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-auth/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/src/main/java/com/liyun/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/classes/com/liyun/common/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-common/target/ym-common-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ym-common/target/ym-common-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/filter/AuthGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/java/com/liyun/gateway/filter/AuthGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/ItemSkuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/ItemSkuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/MerchantItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/MerchantItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/SpecTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/controller/SpecTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ItemSaveDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/dto/ItemSaveDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/vo/ItemDetailVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/domain/vo/ItemDetailVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/IItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/IItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/IItemSkuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/IItemSkuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ItemDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ItemDetailServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ItemServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ItemSkuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ItemSkuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ShopServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/src/main/java/com/liyun/item/service/impl/ShopServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/ItemSkuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/ItemSkuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/MerchantItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/MerchantItemController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/ShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/ShopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/SpecTemplateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/controller/SpecTemplateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/domain/dto/ItemSaveDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/domain/dto/ItemSaveDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/domain/vo/ItemDetailVO$SpecValueVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/domain/vo/ItemDetailVO$SpecValueVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/IItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/IItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/IItemSkuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/IItemSkuService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ItemDetailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ItemDetailServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ItemServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ItemServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ItemSkuServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ItemSkuServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ShopServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-item/target/classes/com/liyun/item/service/impl/ShopServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-item/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/PayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/PayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/controller/PayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/domain/dto/OrderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/domain/dto/OrderDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/domain/vo/CreateOrderVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/domain/vo/CreateOrderVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/handler/OrderJobHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/handler/OrderJobHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/ICartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/ICartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/IPayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/IPayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/impl/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/impl/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/impl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/impl/PayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/java/com/liyun/pay/service/impl/PayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/PayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/PayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/controller/PayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/controller/PayController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/domain/dto/OrderDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/domain/dto/OrderDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/domain/vo/CreateOrderVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/domain/vo/CreateOrderVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/handler/OrderJobHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/handler/OrderJobHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/ICartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/ICartService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/IOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/IPayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/IPayService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/impl/CartServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/impl/CartServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/impl/OrderServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/impl/PayServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-pay/target/classes/com/liyun/pay/service/impl/PayServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-pay/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/controller/CouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/controller/CouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/controller/ExchangeCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/controller/ExchangeCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/controller/UserCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/controller/UserCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/domain/vo/UserCouponVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/domain/vo/UserCouponVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/handler/CouponJobHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/handler/CouponJobHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/ICouponService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/ICouponService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/IUserCouponService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/IUserCouponService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/impl/CouponServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/impl/CouponServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/impl/UserCouponServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/java/com/liyun/promotion/service/impl/UserCouponServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/src/main/resources/sql/ym_promotion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/src/main/resources/sql/ym_promotion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/controller/CouponController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/controller/CouponController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/controller/ExchangeCodeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/controller/ExchangeCodeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/controller/UserCouponController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/controller/UserCouponController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/domain/vo/UserCouponVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/domain/vo/UserCouponVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/handler/CouponJobHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/handler/CouponJobHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/ICouponService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/ICouponService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/IUserCouponService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/IUserCouponService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/impl/CouponServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/impl/CouponServiceImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/impl/CouponServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/impl/CouponServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/impl/UserCouponServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/com/liyun/promotion/service/impl/UserCouponServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-promotion/target/classes/sql/ym_promotion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ym-promotion/target/classes/sql/ym_promotion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-remark/src/main/java/com/liyun/remark/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-remark/src/main/java/com/liyun/remark/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-remark/src/main/java/com/liyun/remark/controller/LikedRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-remark/src/main/java/com/liyun/remark/controller/LikedRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-remark/target/classes/com/liyun/remark/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-remark/target/classes/com/liyun/remark/controller/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-remark/target/classes/com/liyun/remark/controller/LikedRecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-remark/target/classes/com/liyun/remark/controller/LikedRecordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/UserApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/UserApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/src/main/java/com/liyun/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/UserApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/UserApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/AdminServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ym-user/target/classes/com/liyun/user/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ym-user/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yunmeng-ai/src/main/resources/bootstrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/yunmeng-ai/src/main/resources/bootstrap.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yunmeng-ai/target/classes/bootstrap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/yunmeng-ai/target/classes/bootstrap.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../code/yunmeng-mall-back/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../code/yunmeng-mall-back/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../code/yunmeng-mall-back/.idea/dataSources.local.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../code/yunmeng-mall-back/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../code/yunmeng-mall-back/.idea/encodings.xml" afterDir="false" />
@@ -73,7 +197,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../code/yunmeng-mall-back" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -112,11 +236,14 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Maven.ym-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ym-api [install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.ym-common [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.ym-common [install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.yunmeng-mall-back [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.yunmeng-mall-back [compile].executor&quot;: &quot;Run&quot;,
     &quot;Maven.yunmeng-mall-back [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.yunmeng-mall-back [org.apache.maven.plugins:maven-clean-plugin:3.3.2:clean].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -137,7 +264,7 @@
     &quot;Spring Boot.YmItemApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/code/yunmeng-mall-back/yunmeng-ai&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/code/aitestmanager/backend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -333,7 +460,15 @@
       <workItem from="1781764688681" duration="11166000" />
       <workItem from="1782056911555" duration="2000" />
       <workItem from="1782196249454" duration="4968000" />
-      <workItem from="1782280001781" duration="12324000" />
+      <workItem from="1782280001781" duration="16865000" />
+      <workItem from="1782298365660" duration="396000" />
+      <workItem from="1782298783210" duration="5694000" />
+      <workItem from="1782355736123" duration="9437000" />
+      <workItem from="1782365971504" duration="5818000" />
+      <workItem from="1782433900188" duration="29000" />
+      <workItem from="1782435131036" duration="5957000" />
+      <workItem from="1782469537664" duration="1000" />
+      <workItem from="1782526969392" duration="5336000" />
     </task>
     <task id="LOCAL-00001" summary="我的页面地址相关接口提交1">
       <option name="closed" value="true" />

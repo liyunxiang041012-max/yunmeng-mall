@@ -74,9 +74,9 @@ public class UserController {
     }
     @Operation(summary = "商家注册")
     @PostMapping("/shop/register")
-    public Long registerShop(@RequestBody RegisterShopDTO registerDTO, HttpServletRequest  request){
+    public Result<Long> registerShop(@RequestBody RegisterShopDTO registerDTO, HttpServletRequest  request){
         String ip = getClientIp( request);
-        return userService.registerShop(registerDTO, ip);
+        return Result.success(userService.registerShop(registerDTO, ip));
     }
     @Operation(summary = "获取用户详细信息")
     @GetMapping("/detail")
@@ -85,10 +85,17 @@ public class UserController {
 
         return Result.success(vo);
     }
+    @Operation(summary = "获取当前用户信息（无参，前端兼容）")
+    @GetMapping("/info")
+    public Result<UserDetailVO> getCurrentUserInfo() {
+        UserDetailVO vo = userService.getUserDetail();
+        return Result.success(vo);
+    }
+
     @Operation(summary = "按ID获取用户信息")
     @GetMapping("/info/{id}")
-    public Map<String, Object> getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+    public Result<Map<String, Object>> getUserById(@PathVariable Long id) {
+        return Result.success(userService.getUserById(id));
     }
 
     @Operation(summary = "登出")

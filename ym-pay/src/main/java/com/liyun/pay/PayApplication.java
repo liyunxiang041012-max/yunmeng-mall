@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @MapperScan("com.liyun.pay.mapper")
-@EnableFeignClients(basePackages = "com.liyun.api.client")
+@EnableFeignClients(basePackages = {"com.liyun.api.client", "com.liyun.pay.feign"})
 public class PayApplication {
 
     public static void main(String[] args) {

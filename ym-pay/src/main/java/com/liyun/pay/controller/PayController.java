@@ -49,4 +49,11 @@ public class PayController {
         payService.cancelPay(id);
         return Result.success();
     }
+
+    @Operation(summary = "支付成功回调")
+    @PostMapping("/callback/{payNo}")
+    public Result<Void> payCallback(@PathVariable String payNo) {
+        payService.handlePayCallback(payNo);
+        return Result.success();
+    }
 }

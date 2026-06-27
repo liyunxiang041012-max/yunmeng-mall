@@ -12,9 +12,9 @@ public class OrderDTO {
     private List<OrderItemDTO> items;
 
     /**
-     * 优惠券ID，没有则为null
+     * 用户优惠券ID（user_coupon表主键），String类型防JS精度丢失
      */
-    private Long couponId;
+    private String userCouponId;
 
 
 

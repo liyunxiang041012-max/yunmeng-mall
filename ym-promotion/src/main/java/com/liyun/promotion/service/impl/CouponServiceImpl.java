@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxl.job.core.context.XxlJobHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +54,10 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
     private final IUserCouponService userCouponService;
     private final StringRedisTemplate redisTemplate;
     private final ObjectMapper objectMapper;
+
+    /** 清理已结束优惠券的保留天数（默认7天） */
+    @Value("${coupon.cleanup.days:7}")
+    private int cleanupDays;
 
     private static final String COUPON_ISSUING_CACHE_KEY = "cache:coupon:issuing";
     private static final long COUPON_CACHE_TTL = 5; // 分钟
@@ -307,5 +312,53 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
             log.warn("发放中优惠券缓存写入失败", e);
         }
         return coupons;
+    }
+
+    @Override
+    @Transactional
+    public void deleteFinishedCoupons() {
+        LocalDateTime deadline = LocalDateTime.now().minusDays(cleanupDays);
+        log.info("【优惠券清除】扫描条件: status=FINISHED, issueEndTime <= {} (保留{}天)", deadline, cleanupDays);
+
+        // 1.先统计总数
+        long total = lambdaQuery()
+                .eq(Coupon::getStatus, FINISHED)
+                .le(Coupon::getIssueEndTime, deadline)
+                .count();
+        log.info("【优惠券清除】符合条件的优惠券总数: {}", total);
+
+        if (total == 0) {
+            log.info("【优惠券清除】无符合条件的优惠券，跳过");
+            return;
+        }
+
+        // 2.查询待删除列表
+        List<Coupon> finishedList = lambdaQuery()
+                .eq(Coupon::getStatus, FINISHED)
+                .le(Coupon::getIssueEndTime, deadline)
+                .list();
+
+        List<Long> couponIds = finishedList.stream().map(Coupon::getId).collect(Collectors.toList());
+        log.info("【优惠券清除】开始批量删除 {} 张优惠券: {}", couponIds.size(), couponIds);
+
+        // 3.删除作用范围
+        boolean scopeResult = scopeService.remove(new LambdaQueryWrapper<CouponScope>()
+                .in(CouponScope::getCouponId, couponIds));
+        log.info("【优惠券清除】作用范围删除结果: {}", scopeResult);
+
+        // 4.删除用户券
+        boolean userCouponResult = userCouponService.remove(new LambdaQueryWrapper<UserCoupon>()
+                .in(UserCoupon::getCouponId, couponIds));
+        log.info("【优惠券清除】用户券删除结果: {}", userCouponResult);
+
+        // 5.删除兑换码
+        boolean codeResult = codeService.remove(new LambdaQueryWrapper<com.liyun.promotion.domain.po.ExchangeCode>()
+                .in(com.liyun.promotion.domain.po.ExchangeCode::getExchangeTargetId, couponIds));
+        log.info("【优惠券清除】兑换码删除结果: {}", codeResult);
+
+        // 6.删除优惠券
+        boolean couponResult = removeBatchByIds(couponIds);
+        log.info("【优惠券清除】优惠券删除结果: {}", couponResult);
+        log.info("【优惠券清除】本次共清除 {} 张优惠券", couponIds.size());
     }
 }

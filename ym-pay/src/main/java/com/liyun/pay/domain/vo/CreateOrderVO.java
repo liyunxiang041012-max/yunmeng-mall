@@ -17,4 +17,10 @@ public class CreateOrderVO {
     /** 过期时间（前端用于倒计时） */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expireTime;
+    /** 原价（分） */
+    private Long totalAmount;
+    /** 实付（分） */
+    private Long payAmount;
+    /** 优惠券抵扣（分） */
+    private Long discountAmount;
 }

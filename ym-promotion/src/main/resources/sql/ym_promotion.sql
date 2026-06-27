@@ -114,3 +114,36 @@ INSERT INTO `coupon` (`id`, `name`, `type`, `discount_type`, `specific`, `discou
 (1018, '春季焕新满300减60', 1, 4, 0, 6000, 30000, 0, 1, '2026-03-01 00:00:00', '2026-04-30 23:59:59', 0, '2026-03-01 00:00:00', '2026-05-31 23:59:59', 4, 3000, 2800, 2100, 1),
 (1019, '直播专属满99减30', 1, 4, 0, 3000, 9900, 0, 2, '2026-07-01 00:00:00', '2026-12-31 23:59:59', 7, NULL, NULL, 3, 300, 0, 0, 1),
 (1020, '学生特惠满50减20', 1, 4, 0, 2000, 5000, 0, 1, '2026-06-15 00:00:00', '2026-09-15 23:59:59', 15, NULL, NULL, 3, 1000, 0, 0, 1);
+
+-- =============================================
+-- 秒杀服务
+-- =============================================
+
+DROP TABLE IF EXISTS `flash_sale`;
+CREATE TABLE `flash_sale` (
+    `id` BIGINT NOT NULL COMMENT '秒杀活动ID',
+    `name` VARCHAR(100) NOT NULL COMMENT '活动名称',
+    `start_time` DATETIME NOT NULL COMMENT '开始时间',
+    `end_time` DATETIME NOT NULL COMMENT '结束时间',
+    `status` INT DEFAULT 1 COMMENT '状态：1=未开始,2=进行中,3=已结束',
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    KEY `idx_status_time` (`status`, `start_time`, `end_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='秒杀活动';
+
+DROP TABLE IF EXISTS `flash_sale_item`;
+CREATE TABLE `flash_sale_item` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `flash_sale_id` BIGINT NOT NULL COMMENT '秒杀活动ID',
+    `sku_id` BIGINT NOT NULL COMMENT 'SKU ID',
+    `spu_id` BIGINT NOT NULL COMMENT 'SPU ID',
+    `flash_price` BIGINT NOT NULL COMMENT '秒杀价格（分）',
+    `stock` INT NOT NULL COMMENT '秒杀库存',
+    `sold` INT DEFAULT 0 COMMENT '已售数量',
+    `limit_per_user` INT DEFAULT 1 COMMENT '每人限购',
+    `sort` INT DEFAULT 0 COMMENT '排序',
+    PRIMARY KEY (`id`),
+    KEY `idx_flash_sale_id` (`flash_sale_id`),
+    KEY `idx_sku_id` (`sku_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='秒杀商品';

@@ -24,4 +24,7 @@ public interface ICartService extends IService<Cart> {
     void updateCart(CartDTO dto);
 
     void deleteCart(List<Long> ids);
+
+    /** 下单后按购买数量扣减购物车（数量<=0则删除） */
+    void reduceCartAfterOrder(Long userId, java.util.Map<Long, Integer> skuQuantityMap);
 }

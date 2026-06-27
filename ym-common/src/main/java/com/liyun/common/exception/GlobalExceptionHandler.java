@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @RestControllerAdvice
@@ -22,6 +23,13 @@ public class GlobalExceptionHandler {
     // RuntimeException 异常（含业务层 throw new RuntimeException("xxx")）
     @ExceptionHandler(RuntimeException.class)
     public Result<?> handleRuntimeException(RuntimeException e) {
+        // 404 静默处理，不打印任何日志
+        if (e instanceof ResponseStatusException responseStatusException) {
+            if (responseStatusException.getStatusCode().value() == 404) {
+                return Result.fail(404, "资源不存在");
+            }
+        }
+        
         log.warn("运行异常：{}", e.getMessage());
         return Result.fail(500, e.getMessage());
     }

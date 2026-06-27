@@ -24,4 +24,6 @@ public interface IPayService extends IService<Pay> {
     PayVO getPayDetail(Long id);
 
     void cancelPay(Long id);
+
+    void handlePayCallback(String payNo);
 }

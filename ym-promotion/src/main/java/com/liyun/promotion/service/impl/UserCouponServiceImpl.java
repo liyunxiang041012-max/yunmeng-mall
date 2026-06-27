@@ -213,6 +213,59 @@ public class UserCouponServiceImpl extends ServiceImpl<UserCouponMapper, UserCou
         log.info("批量标记过期用户券完成，共 {} 张", expiredList.size());
     }
 
+    @Transactional
+    @Override
+    public UserCoupon useCoupon(Long userCouponId, Long orderAmount) {
+        // 1.查询用户券
+        UserCoupon uc = getById(userCouponId);
+        if (uc == null) {
+            throw new BadRequestException("优惠券不存在");
+        }
+        if (!UserCouponStatus.UNUSED.equals(uc.getStatus())) {
+            throw new BadRequestException("优惠券状态不正确");
+        }
+        if (uc.getTermEndTime().isBefore(LocalDateTime.now())) {
+            throw new BadRequestException("优惠券已过期");
+        }
+
+        // 2.查询优惠券规则
+        Coupon coupon = couponMapper.selectById(uc.getCouponId());
+        if (coupon == null) {
+            throw new BadRequestException("优惠券规则不存在");
+        }
+
+        // 3.校验门槛金额
+        if (coupon.getThresholdAmount() != null && coupon.getThresholdAmount() > 0
+                && orderAmount < coupon.getThresholdAmount()) {
+            throw new BadRequestException("订单金额未达到优惠券使用门槛");
+        }
+
+        // 4.标记用户券已使用
+        uc.setStatus(UserCouponStatus.USED);
+        uc.setUsedTime(LocalDateTime.now());
+        updateById(uc);
+
+        // 5.更新优惠券已使用数量
+        Coupon updateCoupon = new Coupon();
+        updateCoupon.setId(coupon.getId());
+        updateCoupon.setUsedNum(coupon.getUsedNum() + 1);
+        couponMapper.updateById(updateCoupon);
+
+        // 6.发送MQ消息
+        couponMqSender.sendCouponUseEvent(
+                new CouponEventDTO(uc.getUserId(), uc.getCouponId(), uc.getId(), "USE"));
+
+        log.info("优惠券使用成功: userCouponId={}, orderAmount={}", userCouponId, orderAmount);
+        return uc;
+    }
+
+    @Override
+    public Coupon getCouponByUserCouponId(Long userCouponId) {
+        UserCoupon uc = getById(userCouponId);
+        if (uc == null) return null;
+        return couponMapper.selectById(uc.getCouponId());
+    }
+
     private void saveUserCoupon(Coupon coupon, Long userId) {
         UserCoupon uc = new UserCoupon();
         uc.setUserId(userId);

@@ -1,6 +1,7 @@
 package com.liyun.promotion.controller;
 
 import com.liyun.common.utils.PageDTO;
+import com.liyun.common.utils.Result;
 import com.liyun.promotion.domain.dto.CouponFormDTO;
 import com.liyun.promotion.domain.dto.CouponIssueFormDTO;
 import com.liyun.promotion.domain.vo.CouponDetailVO;
@@ -26,49 +27,54 @@ public class CouponController {
 
     @PostMapping
     @Operation(summary = "新增优惠券接口")
-    public void saveCoupon(@RequestBody @Valid CouponFormDTO dto) {
+    public Result<Void> saveCoupon(@RequestBody @Valid CouponFormDTO dto) {
         couponService.saveCoupon(dto);
+        return Result.success();
     }
 
     @GetMapping("/page")
     @Operation(summary = "分页查询优惠券接口")
-    public PageDTO<CouponPageVO> pageQueryCoupon(CouponQuery query) {
-        return couponService.pageQueryCoupon(query);
+    public Result<PageDTO<CouponPageVO>> pageQueryCoupon(CouponQuery query) {
+        return Result.success(couponService.pageQueryCoupon(query));
     }
 
     @PutMapping("/{id}/issue")
     @Operation(summary = "开始发放优惠券接口")
-    public void beginIssue(@RequestBody @Valid CouponIssueFormDTO dto) {
+    public Result<Void> beginIssue(@RequestBody @Valid CouponIssueFormDTO dto) {
         couponService.beginIssue(dto);
+        return Result.success();
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "更新优惠券接口")
-    public void updateCoupon(@PathVariable Long id, @RequestBody @Valid CouponFormDTO dto) {
+    public Result<Void> updateCoupon(@PathVariable Long id, @RequestBody @Valid CouponFormDTO dto) {
         couponService.updateCoupon(id, dto);
+        return Result.success();
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "删除优惠券接口")
-    public void deleteCoupon(@PathVariable Long id) {
+    public Result<Void> deleteCoupon(@PathVariable Long id) {
         couponService.removeByIdAndCouponScope(id);
+        return Result.success();
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "根据id查询优惠券接口")
-    public CouponDetailVO getCouponById(@PathVariable Long id) {
-        return couponService.getCouponById(id);
+    public Result<CouponDetailVO> getCouponById(@PathVariable Long id) {
+        return Result.success(couponService.getCouponById(id));
     }
 
     @PutMapping("/{id}/pause")
     @Operation(summary = "暂停发放优惠券接口")
-    public void pauseIssue(@PathVariable Long id) {
+    public Result<Void> pauseIssue(@PathVariable Long id) {
         couponService.pauseIssue(id);
+        return Result.success();
     }
 
     @GetMapping("/list")
     @Operation(summary = "查询发放中的优惠券列表")
-    public List<CouponVO> queryIssuingCoupon() {
-        return couponService.queryIssuingCoupon();
+    public Result<List<CouponVO>> queryIssuingCoupon() {
+        return Result.success(couponService.queryIssuingCoupon());
     }
 }

@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 商家端 - 商品管理（商家管理自己的商品）
  */
@@ -28,7 +31,7 @@ public class MerchantItemController {
 
     @Operation(summary = "分页查询我的商品列表")
     @GetMapping("/page")
-    public Result<PageDTO<Item>> page(
+    public Result<PageDTO<Map<String, Object>>> page(
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(required = false) Integer status,
@@ -48,7 +51,29 @@ public class MerchantItemController {
     @PostMapping
     public Result<Item> save(@RequestBody ItemSaveDTO dto) {
         Item item = BeanUtils.copyBean(dto, Item.class);
-        Item saved = itemService.saveItem(item);
+        item.setPrice(null);
+        item.setStock(null);
+
+        boolean isMultiSpec = dto.getSpecs() != null && !dto.getSpecs().isEmpty();
+        Item saved;
+        if (isMultiSpec) {
+            List<Map<String, Object>> skuList = dto.getSkus().stream()
+                    .map(s -> {
+                        Map<String, Object> m = new java.util.LinkedHashMap<>();
+                        m.put("specData", s.getSpecData());
+                        m.put("price", s.getPrice());
+                        m.put("stock", s.getStock());
+                        m.put("image", s.getImage());
+                        return m;
+                    }).collect(java.util.stream.Collectors.toList());
+            List<String> specNames = dto.getSpecs().stream()
+                    .map(ItemSaveDTO.SpecDTO::getSpecName).collect(java.util.stream.Collectors.toList());
+            saved = itemService.saveItem(item, specNames, skuList);
+        } else {
+            item.setPrice(dto.getPrice());
+            item.setStock(dto.getStock());
+            saved = itemService.saveItem(item);
+        }
         return Result.success(saved);
     }
 
@@ -56,7 +81,28 @@ public class MerchantItemController {
     @PutMapping("/{itemId}")
     public Result update(@PathVariable Long itemId, @RequestBody ItemSaveDTO dto) {
         Item item = BeanUtils.copyBean(dto, Item.class);
-        itemService.updateItem(itemId, item);
+        item.setPrice(null);
+        item.setStock(null);
+
+        boolean isMultiSpec = dto.getSpecs() != null && !dto.getSpecs().isEmpty();
+        if (isMultiSpec) {
+            List<Map<String, Object>> skuList = dto.getSkus().stream()
+                    .map(s -> {
+                        Map<String, Object> m = new java.util.LinkedHashMap<>();
+                        m.put("specData", s.getSpecData());
+                        m.put("price", s.getPrice());
+                        m.put("stock", s.getStock());
+                        m.put("image", s.getImage());
+                        return m;
+                    }).collect(java.util.stream.Collectors.toList());
+            List<String> specNames = dto.getSpecs().stream()
+                    .map(ItemSaveDTO.SpecDTO::getSpecName).collect(java.util.stream.Collectors.toList());
+            itemService.updateItem(itemId, item, specNames, skuList);
+        } else {
+            item.setPrice(dto.getPrice());
+            item.setStock(dto.getStock());
+            itemService.updateItem(itemId, item);
+        }
         return Result.success();
     }
 

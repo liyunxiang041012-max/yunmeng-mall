@@ -3,6 +3,8 @@ package com.liyun.api.client;
 import com.liyun.api.dto.CouponInfoDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -21,4 +23,9 @@ public interface PromotionFeign {
     /** 查询发放中的优惠券列表 */
     @GetMapping("/coupons/list")
     List<CouponInfoDTO> queryIssuingCoupons();
+
+    /** 使用优惠券（支付时调用） */
+    @PostMapping("/user-coupons/{id}/use")
+    Map<String, Object> useCoupon(@PathVariable("id") Long id,
+                                   @RequestParam("orderAmount") Long orderAmount);
 }

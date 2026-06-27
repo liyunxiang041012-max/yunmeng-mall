@@ -54,7 +54,9 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
 
         Long userId;
         try {
-            userId = userFeign.registerShop(registerShopDTO);
+            Map<String, Object> result = userFeign.registerShop(registerShopDTO);
+            userId = result != null && result.get("data") != null
+                    ? ((Number) result.get("data")).longValue() : null;
         } catch (Exception e) {
             log.error("调用用户服务注册商家失败", e);
             throw new RuntimeException("用户服务不可用，请稍后再试", e);

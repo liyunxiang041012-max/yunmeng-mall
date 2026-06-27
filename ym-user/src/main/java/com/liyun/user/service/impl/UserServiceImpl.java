@@ -83,8 +83,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw new BizException(ResultCode.USER_NOT_EXIST);
         }
 
+        // 2.校验密码
+        if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+            throw new RuntimeException("密码错误");
+        }
 
-        // 3.生成token
+        // 3.只允许普通用户登录（商家/管理员走专属入口）
+        if (user.getRole() != null && user.getRole() != 0) {
+            throw new RuntimeException("该账号不是普通用户，请使用对应入口登录");
+        }
+
+        // 4.生成token
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
         claims.put("role", user.getRole());

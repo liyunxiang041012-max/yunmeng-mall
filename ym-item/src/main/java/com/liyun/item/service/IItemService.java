@@ -32,11 +32,15 @@ public interface IItemService extends IService<Item> {
 
     Long getCurrentShopId();
 
-    PageDTO<Item> listMyItems(Integer page, Integer size, Integer status, String keyword);
+    PageDTO<Map<String, Object>> listMyItems(Integer page, Integer size, Integer status, String keyword);
 
     Item saveItem(Item item);
 
+    Item saveItem(Item item, List<String> specNames, List<Map<String, Object>> skuList);
+
     void updateItem(Long itemId, Item item);
+
+    void updateItem(Long itemId, Item item, List<String> specNames, List<Map<String, Object>> skuList);
 
     void deleteItem(Long itemId);
 
