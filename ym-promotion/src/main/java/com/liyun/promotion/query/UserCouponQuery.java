@@ -1,0 +1,14 @@
+package com.liyun.promotion.query;
+
+import com.liyun.common.query.PageQuery;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Schema(description = "用户优惠券查询参数")
+public class UserCouponQuery extends PageQuery {
+    @Schema(description = "优惠券状态，1：未使用，2：已使用，3：已过期")
+    private Integer status;
+}

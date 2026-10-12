@@ -1,0 +1,432 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "云梦商城 - 管理端接口",
+    "version": "1.0.0",
+    "description": "管理员后台所有接口，权限要求 role=2，Header 携带 Authorization: Bearer <admin_token>"
+  },
+  "servers": [
+    { "url": "http://localhost:8080", "description": "网关地址" }
+  ],
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "LoginRequest": {
+        "type": "object",
+        "required": ["account", "password"],
+        "properties": {
+          "account":  { "type": "string", "example": "admin" },
+          "password": { "type": "string", "example": "123456" }
+        },
+        "example": { "account": "admin", "password": "123456" }
+      },
+      "ToggleStatusRequest": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": { "type": "integer", "enum": [0, 1], "example": 0 }
+        },
+        "example": { "status": 0 }
+      },
+      "ChangeRoleRequest": {
+        "type": "object",
+        "required": ["role"],
+        "properties": {
+          "role": { "type": "integer", "enum": [0, 1, 2], "example": 1 }
+        },
+        "example": { "role": 1 }
+      },
+      "NoticeRequest": {
+        "type": "object",
+        "required": ["title", "content"],
+        "properties": {
+          "title":      { "type": "string",  "example": "系统维护通知" },
+          "content":    { "type": "string",  "example": "今晚22:00-24:00系统维护" },
+          "targetRole": { "type": "integer", "example": -1, "enum": [-1, 0, 1, 2] }
+        },
+        "example": { "title": "系统维护通知", "content": "今晚22:00-24:00系统维护", "targetRole": -1 }
+      },
+      "CategorySaveRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name":     { "type": "string",  "example": "图书", "minLength": 2, "maxLength": 50 },
+          "parentId": { "type": "integer", "example": 0 }
+        },
+        "example": { "name": "图书", "parentId": 0 }
+      },
+      "ShopUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "shopName":    { "type": "string", "example": "新店名" },
+          "logo":        { "type": "string", "example": "https://oss.xxx.com/shop/logo.png" },
+          "description": { "type": "string", "example": "更新的店铺描述" }
+        },
+        "example": { "shopName": "新店名", "logo": "https://oss.xxx.com/shop/logo.png", "description": "店铺描述" }
+      },
+      "FlashSaleRequest": {
+        "type": "object",
+        "properties": {
+          "name":      { "type": "string", "example": "618秒杀" },
+          "startTime": { "type": "string", "format": "date-time", "example": "2026-07-01T10:00:00" },
+          "endTime":   { "type": "string", "format": "date-time", "example": "2026-07-01T12:00:00" },
+          "items":     { "type": "array",  "items": { "type": "object" } }
+        },
+        "example": {
+          "name": "618秒杀",
+          "startTime": "2026-07-01T10:00:00",
+          "endTime": "2026-07-01T12:00:00",
+          "items": []
+        }
+      }
+    }
+  },
+  "paths": {
+    "/us/user/admin/login": {
+      "post": {
+        "tags": ["01-登录"],
+        "summary": "管理员登录",
+        "operationId": "adminLogin",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" },
+              "example": { "account": "admin", "password": "123456" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "成功，返回 token" }
+        }
+      }
+    },
+    "/us/user/admin/overview": {
+      "get": {
+        "tags": ["02-仪表盘"],
+        "summary": "仪表盘概览",
+        "operationId": "getOverview",
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/us/user/admin/revenue": {
+      "get": {
+        "tags": ["02-仪表盘"],
+        "summary": "收入趋势",
+        "operationId": "getRevenue",
+        "parameters": [
+          { "name": "period", "in": "query", "schema": { "type": "integer", "default": 7, "example": 7 }, "description": "7/30/90天" }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/us/user/admin/page": {
+      "get": {
+        "tags": ["03-用户管理"],
+        "summary": "用户分页列表",
+        "operationId": "pageUsers",
+        "parameters": [
+          { "name": "page",    "in": "query", "schema": { "type": "integer", "default": 1, "example": 1 } },
+          { "name": "size",    "in": "query", "schema": { "type": "integer", "default": 10, "example": 10 } },
+          { "name": "keyword", "in": "query", "schema": { "type": "string" } },
+          { "name": "role",    "in": "query", "schema": { "type": "integer", "enum": [0, 1, 2] } },
+          { "name": "status",  "in": "query", "schema": { "type": "integer", "enum": [0, 1] } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/us/user/admin/{userId}": {
+      "get": {
+        "tags": ["03-用户管理"],
+        "summary": "用户详情",
+        "operationId": "getUserDetail",
+        "parameters": [
+          { "name": "userId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" }, "500": { "description": "用户不存在" } }
+      }
+    },
+    "/us/user/admin/{userId}/status": {
+      "put": {
+        "tags": ["03-用户管理"],
+        "summary": "启用/禁用用户",
+        "operationId": "toggleUserStatus",
+        "parameters": [
+          { "name": "userId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ToggleStatusRequest" },
+              "example": { "status": 0 }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/us/user/admin/{userId}/role": {
+      "put": {
+        "tags": ["03-用户管理"],
+        "summary": "修改用户角色",
+        "operationId": "changeUserRole",
+        "parameters": [
+          { "name": "userId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChangeRoleRequest" },
+              "example": { "role": 1 }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/us/user/admin/notice": {
+      "post": {
+        "tags": ["04-系统通知"],
+        "summary": "发送系统通知",
+        "operationId": "sendNotice",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NoticeRequest" },
+              "example": { "title": "系统维护通知", "content": "今晚22:00-24:00系统维护", "targetRole": -1 }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/item/page": {
+      "get": {
+        "tags": ["05-商品审核"],
+        "summary": "商品分页列表",
+        "operationId": "pageItems",
+        "parameters": [
+          { "name": "page",        "in": "query", "schema": { "type": "integer", "default": 1, "example": 1 } },
+          { "name": "size",        "in": "query", "schema": { "type": "integer", "default": 10, "example": 10 } },
+          { "name": "auditStatus", "in": "query", "schema": { "type": "integer", "enum": [0, 1, 2], "example": 0 }, "description": "0=待审核,1=通过,2=驳回" },
+          { "name": "status",      "in": "query", "schema": { "type": "integer", "enum": [0, 1], "example": 0 }, "description": "0=下架,1=上架" },
+          { "name": "keyword",     "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/item/{itemId}": {
+      "get": {
+        "tags": ["05-商品审核"],
+        "summary": "商品详情",
+        "operationId": "getItemDetail",
+        "parameters": [
+          { "name": "itemId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/item/{itemId}/approve": {
+      "put": {
+        "tags": ["05-商品审核"],
+        "summary": "审核通过",
+        "operationId": "approveItem",
+        "parameters": [
+          { "name": "itemId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/item/{itemId}/reject": {
+      "put": {
+        "tags": ["05-商品审核"],
+        "summary": "审核驳回",
+        "operationId": "rejectItem",
+        "parameters": [
+          { "name": "itemId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/item/toggle-status/{itemId}": {
+      "put": {
+        "tags": ["05-商品审核"],
+        "summary": "管理员上下架",
+        "operationId": "toggleItemStatus",
+        "parameters": [
+          { "name": "itemId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/page": {
+      "get": {
+        "tags": ["06-商家管理"],
+        "summary": "商家分页列表",
+        "operationId": "pageShops",
+        "parameters": [
+          { "name": "page",    "in": "query", "schema": { "type": "integer", "default": 1, "example": 1 } },
+          { "name": "size",    "in": "query", "schema": { "type": "integer", "default": 10, "example": 10 } },
+          { "name": "keyword", "in": "query", "schema": { "type": "string" } },
+          { "name": "status",  "in": "query", "schema": { "type": "integer", "enum": [0, 1] }, "description": "0=关闭,1=营业" }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/{shopId}": {
+      "get": {
+        "tags": ["06-商家管理"],
+        "summary": "商家详情",
+        "operationId": "getShopDetail",
+        "parameters": [
+          { "name": "shopId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      },
+      "put": {
+        "tags": ["06-商家管理"],
+        "summary": "编辑商家",
+        "operationId": "updateShop",
+        "parameters": [
+          { "name": "shopId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ShopUpdateRequest" },
+              "example": { "shopName": "新店名", "logo": "https://oss.xxx.com/shop/logo.png", "description": "店铺描述" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      },
+      "delete": {
+        "tags": ["06-商家管理"],
+        "summary": "删除商家（软删除）",
+        "operationId": "deleteShop",
+        "parameters": [
+          { "name": "shopId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/shop/admin/toggle-status/{shopId}": {
+      "put": {
+        "tags": ["06-商家管理"],
+        "summary": "开关营业状态",
+        "operationId": "toggleShopStatus",
+        "parameters": [
+          { "name": "shopId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/categories/admin/all": {
+      "get": {
+        "tags": ["07-分类管理"],
+        "summary": "全部分类（平铺列表）",
+        "operationId": "listAllCategories",
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/categories/admin": {
+      "post": {
+        "tags": ["07-分类管理"],
+        "summary": "新增分类",
+        "operationId": "createCategory",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CategorySaveRequest" },
+              "example": { "name": "图书", "parentId": 0 }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/it/categories/admin/{id}": {
+      "put": {
+        "tags": ["07-分类管理"],
+        "summary": "编辑分类",
+        "operationId": "updateCategory",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CategorySaveRequest" },
+              "example": { "name": "新名称", "parentId": 0 }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      },
+      "delete": {
+        "tags": ["07-分类管理"],
+        "summary": "删除分类（级联软删除子分类）",
+        "operationId": "deleteCategory",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/pm/admin/flash-sales": {
+      "post": {
+        "tags": ["08-秒杀管理"],
+        "summary": "创建秒杀活动",
+        "operationId": "createFlashSale",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FlashSaleRequest" },
+              "example": { "name": "618秒杀", "startTime": "2026-07-01T10:00:00", "endTime": "2026-07-01T12:00:00", "items": [] }
+            }
+          }
+        },
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/pm/admin/flash-sales/{id}/start": {
+      "put": {
+        "tags": ["08-秒杀管理"],
+        "summary": "开始秒杀活动",
+        "operationId": "startFlashSale",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    },
+    "/pm/admin/flash-sales/{id}/end": {
+      "put": {
+        "tags": ["08-秒杀管理"],
+        "summary": "结束秒杀活动",
+        "operationId": "endFlashSale",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64", "example": 1 } }
+        ],
+        "responses": { "200": { "description": "成功" } }
+      }
+    }
+  }
+}

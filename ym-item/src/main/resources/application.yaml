@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        group: DEFAULT_GROUP
+  servlet:
+    multipart:
+      max-file-size: 5MB        # 单个文件最大大小
+      max-request-size: 10MB    # 整个请求最大大小

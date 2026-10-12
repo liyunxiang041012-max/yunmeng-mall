@@ -1,0 +1,51 @@
+server:
+  port: 7091
+
+spring:
+  application:
+    name: seata-server
+
+logging:
+  file:
+    path: /root/logs/seata
+  level:
+    io.seata: info
+
+console:
+  user:
+    username: seata
+    password: seata
+
+seata:
+  config:
+    type: file
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 192.168.150.101:8848
+      namespace: ""
+      group: DEFAULT_GROUP
+      username: nacos
+      password: nacos
+  store:
+    mode: db
+    db:
+      datasource: druid
+      dbType: mysql
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://192.168.150.101:3306/seata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      user: root
+      password: "123"
+      min-conn: 10
+      max-conn: 100
+      global-table: global_table
+      branch-table: branch_table
+      lock-table: lock_table
+      query-limit: 100
+      max-wait: 5000
+  security:
+    secretKey: SeataSecretKey_YM2024
+    tokenValidityInMilliseconds: 1800000
+    ignore:
+      urls: /,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.ico,/console-fe/public/**,/api/v1/auth/login

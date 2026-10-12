@@ -1,0 +1,27 @@
+# ===========================================
+# Seata Server Docker Compose 部署
+# ===========================================
+# 前提:
+#   1. 执行 seata-server.sql 创建 seata 数据库
+#   2. Nacos 已运行: 192.168.150.101:8848
+#   3. 将 seataServer.properties 上传到 Nacos
+#      Data ID: seataServer.properties, Group: SEATA_GROUP
+#   4. 将 shared-seata.yaml 上传到 Nacos 
+#      Data ID: shared-seata.yaml, Group: DEFAULT_GROUP
+# ===========================================
+# 启动: docker compose up -d
+# 停止: docker compose down
+# 控制台: http://192.168.150.101:7091
+# ===========================================
+
+version: "3.8"
+
+services:
+  seata-server:
+    image: seataio/seata-server:2.0.0
+    container_name: seata-server
+    restart: always
+    network_mode: host
+    volumes:
+      - ./application.yml:/seata-server/resources/application.yml
+      - /etc/localtime:/etc/localtime:ro
